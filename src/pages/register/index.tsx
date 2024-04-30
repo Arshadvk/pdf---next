@@ -1,23 +1,23 @@
 // ** React Imports
-import { useState, Fragment,ReactNode } from 'react'
+import { ReactNode } from 'react'
 
 // ** Next Imports
-import Link from 'next/link'
+// import Link from 'next/link'
 
 // ** MUI Components
 import Box from '@mui/material/Box'
-import Button from '@mui/material/Button'
+// import Button from '@mui/material/Button'
 import Divider from '@mui/material/Divider'
-import Checkbox from '@mui/material/Checkbox'
-import MenuItem from '@mui/material/MenuItem'
-import TextField from '@mui/material/TextField'
+// import Checkbox from '@mui/material/Checkbox'
+// import MenuItem from '@mui/material/MenuItem'
+// import TextField from '@mui/material/TextField'
 import Typography from '@mui/material/Typography'
-import InputLabel from '@mui/material/InputLabel'
+// import InputLabel from '@mui/material/InputLabel'
 import CardContent from '@mui/material/CardContent'
-import FormControl from '@mui/material/FormControl'
+// import FormControl from '@mui/material/FormControl'
 import { styled, useTheme } from '@mui/material/styles'
 import MuiCard, { CardProps } from '@mui/material/Card'
-import MuiFormControlLabel, { FormControlLabelProps } from '@mui/material/FormControlLabel'
+// import MuiFormControlLabel, { FormControlLabelProps } from '@mui/material/FormControlLabel'
 
 
 
@@ -29,8 +29,8 @@ import BlankLayout from 'src/@core/layouts/BlankLayout'
 
 // ** Demo Imports
 import FooterIllustrationsV1 from 'src/views/pages/auth/FooterIllustration'
-import Grid from '@mui/material/Grid'
-import { Select } from '@mui/material'
+// import Grid from '@mui/material/Grid'
+// import { Select } from '@mui/material'
 
 
 
@@ -39,31 +39,41 @@ const Card = styled(MuiCard)<CardProps>(({ theme }) => ({
   [theme.breakpoints.up('sm')]: { width: '28rem' }
 }))
 
-const LinkStyled = styled('a')(({ theme }) => ({
-  fontSize: '0.875rem',
-  textDecoration: 'none',
-  color: theme.palette.primary.main
-}))
+// const LinkStyled = styled('a')(({ theme }) => ({
+//   fontSize: '0.875rem',
+//   textDecoration: 'none',
+//   color: theme.palette.primary.main
+// }))
 
-const FormControlLabel = styled(MuiFormControlLabel)<FormControlLabelProps>(({ theme }) => ({
-  marginTop: theme.spacing(1.5),
-  marginBottom: theme.spacing(4),
-  '& .MuiFormControlLabel-label': {
-    fontSize: '0.875rem',
-    color: theme.palette.text.secondary
-  }
-}))
+// const FormControlLabel = styled(MuiFormControlLabel)<FormControlLabelProps>(({ theme }) => ({
+//   marginTop: theme.spacing(1.5),
+//   marginBottom: theme.spacing(4),
+//   '& .MuiFormControlLabel-label': {
+//     fontSize: '0.875rem',
+//     color: theme.palette.text.secondary
+//   }
+// }))
 
 const RegisterPage = () => {
-  // ** States
-  const [name, setName] = useState<String | null | undefined>(null)
-  const [email, setEmail] = useState<String | null | undefined>(null)
-  const [number, setNumber] = useState<String | null | undefined>(null)
-  const [date_of_birth, setDOB] = useState<String | null | undefined>(null)
-  const [whatsapp, setWhatsapp] = useState<String | null | undefined>(null)
-  const [qualification, setQualification] = useState<String | null | undefined>(null)
+  // // ** States
+  // const [name, setName] = useState<String | null | undefined>(null)
+  // const [email, setEmail] = useState<String | null | undefined>(null)
+  // const [number, setNumber] = useState<String | null | undefined>(null)
+  // const [date_of_birth, setDOB] = useState<String | null | undefined>(null)
+  // const [whatsapp, setWhatsapp] = useState<String | null | undefined>(null)
+  // const [qualification, setQualification] = useState<String | null | undefined>(null)
+
+  // const [blood, setBlood] = useState<String | null | undefined>(null)
+  // const [emirates, setEmirates] = useState<String | null | undefined>(null)
+  // const [profession, setProfession] = useState<String | null | undefined>(null)
+  // const [zone, setZone] = useState<String | null | undefined>(null)
 
 
+  // const [houseName, setHouseName] = useState<String | null | undefined>(null)
+  // const [district, setDistrict] = useState<String | null | undefined>(null)
+  // const [panjayath, setPanjayath] = useState<String | null | undefined>(null)
+  // const [pin, setPin] = useState<String | null | undefined>(null)
+  // const [, setPanjayat] = useState<String | null | undefined>(null)
 
 
 
@@ -155,7 +165,7 @@ const RegisterPage = () => {
             <Divider sx={{ marginBottom: 0 }} />
           </Box>
 
-          <form noValidate autoComplete='off' onSubmit={e => e.preventDefault()}>
+          {/* <form noValidate autoComplete='off' onSubmit={e => e.preventDefault()}>
             <Grid container spacing={5}>
               <Grid item xs={12}>
                 <Typography variant='body2' sx={{ fontWeight: 600 }}>
@@ -189,7 +199,7 @@ const RegisterPage = () => {
                   </Select>
                 </FormControl>
               </Grid> */}
-
+{/* 
               <Grid item xs={12} sm={6}>
                 <TextField fullWidth type='email' value={email} onChange={e => setEmail(e.currentTarget.value)} label='Email' required placeholder='example@gmail.com' />
               </Grid>
@@ -240,7 +250,7 @@ const RegisterPage = () => {
 
 
               {/* j */}
-
+{/* 
               <Grid item xs={12}>
                 <Divider sx={{ marginBottom: 0 }} />
               </Grid>
@@ -250,8 +260,8 @@ const RegisterPage = () => {
                 </Typography>
               </Grid>
               <Grid item xs={12} sm={6}>
-                <TextField fullWidth label='House Name' placeholder='Leonard' />
-              </Grid>
+                <TextField fullWidth label='House Name' placeholder='Leonard' /> */}
+              {/* </Grid>
               <Grid item xs={12} sm={6}>
                 <TextField fullWidth label='District' placeholder='Carter' />
               </Grid>
@@ -266,8 +276,8 @@ const RegisterPage = () => {
               </Grid>
               <Grid item xs={12} sm={6}>
                 <TextField fullWidth label='Before in PDP' placeholder='Carter' />
-              </Grid>
-            </Grid>
+              </Grid> */}
+            {/* </Grid>
             <FormControlLabel
               control={<Checkbox />}
               label={
@@ -288,9 +298,9 @@ const RegisterPage = () => {
                 <Link passHref href='/pages/login'>
                   <LinkStyled>Sign in instead</LinkStyled>
                 </Link>
-              </Typography>
-            </Box>
-          </form>
+              </Typography> */}
+            {/* </Box>
+          </form> */} 
         </CardContent>
       </Card>
       <FooterIllustrationsV1 />
