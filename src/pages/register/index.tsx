@@ -1,5 +1,5 @@
 // ** React Imports
-import { useState, Fragment, ChangeEvent, MouseEvent, ReactNode, forwardRef } from 'react'
+import { useState, Fragment,ReactNode } from 'react'
 
 // ** Next Imports
 import Link from 'next/link'
@@ -31,7 +31,6 @@ import BlankLayout from 'src/@core/layouts/BlankLayout'
 import FooterIllustrationsV1 from 'src/views/pages/auth/FooterIllustration'
 import Grid from '@mui/material/Grid'
 import { Select } from '@mui/material'
-import { set } from 'nprogress'
 
 interface State {
   password: string
