@@ -59,17 +59,14 @@ const FormControlLabel = styled(MuiFormControlLabel)<FormControlLabelProps>(({ t
 
 const RegisterPage = () => {
   // ** States
-  const [values, setValues] = useState<State>({
-    password: '',
-    showPassword: false
-  })
   const [name, setName] = useState<String | null | undefined>(null)
   const [email, setEmail] = useState<String | null | undefined>(null)
   const [number, setNumber] = useState<String | null | undefined>(null)
-  const [blood, setBlood] = useState<String | null | undefined>(null)
   const [date_of_birth, setDOB] = useState<String | null | undefined>(null)
   const [whatsapp, setWhatsapp] = useState<String | null | undefined>(null)
   const [qualification, setQualification] = useState<String | null | undefined>(null)
+
+  // const [blood, setBlood] = useState<String | null | undefined>(null)
   // const [emirates, setEmirates] = useState<String | null | undefined>(null)
   // const [profession, setProfession] = useState<String | null | undefined>(null)
   // const [zone, setZone] = useState<String | null | undefined>(null)
@@ -183,7 +180,7 @@ const RegisterPage = () => {
                 <TextField fullWidth label='Name' value={name} onChange={e => setName(e.currentTarget.value)} placeholder='Enter Your Name' required />
               </Grid>
 
-              <Grid item xs={12} sm={6} >
+              {/* <Grid item xs={12} sm={6} >
                 <FormControl fullWidth>
                   <InputLabel id='form-layouts-separator-select-label'>Blood Group</InputLabel>
                   <Select
@@ -204,7 +201,7 @@ const RegisterPage = () => {
 
                   </Select>
                 </FormControl>
-              </Grid>
+              </Grid> */}
 
               <Grid item xs={12} sm={6}>
                 <TextField fullWidth type='email' value={email} onChange={e => setEmail(e.currentTarget.value)} label='Email' required placeholder='example@gmail.com' />
