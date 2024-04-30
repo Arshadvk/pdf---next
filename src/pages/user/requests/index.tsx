@@ -5,7 +5,6 @@ import Link from '@mui/material/Link'
 import Card from '@mui/material/Card'
 
 // ** Custom Components Imports
-import CardStatisticsVerticalComponent from 'src/@core/components/card-statistics/card-stats-vertical'
 
 // ** Styled Component Import
 import ApexChartWrapper from 'src/@core/styles/libs/react-apexcharts'

@@ -13,13 +13,10 @@ import MenuItem from '@mui/material/MenuItem'
 import TextField from '@mui/material/TextField'
 import Typography from '@mui/material/Typography'
 import InputLabel from '@mui/material/InputLabel'
-import IconButton from '@mui/material/IconButton'
 import CardContent from '@mui/material/CardContent'
 import FormControl from '@mui/material/FormControl'
-import OutlinedInput from '@mui/material/OutlinedInput'
 import { styled, useTheme } from '@mui/material/styles'
 import MuiCard, { CardProps } from '@mui/material/Card'
-import InputAdornment from '@mui/material/InputAdornment'
 import MuiFormControlLabel, { FormControlLabelProps } from '@mui/material/FormControlLabel'
 
 
@@ -67,7 +64,6 @@ const RegisterPage = () => {
     password: '',
     showPassword: false
   })
-  const [date, setDate] = useState<Date | null | undefined>(null)
   const [name, setName] = useState<String | null | undefined>(null)
   const [email, setEmail] = useState<String | null | undefined>(null)
   const [number, setNumber] = useState<String | null | undefined>(null)
@@ -75,16 +71,16 @@ const RegisterPage = () => {
   const [date_of_birth, setDOB] = useState<String | null | undefined>(null)
   const [whatsapp, setWhatsapp] = useState<String | null | undefined>(null)
   const [qualification, setQualification] = useState<String | null | undefined>(null)
-  const [emirates, setEmirates] = useState<String | null | undefined>(null)
-  const [profession, setProfession] = useState<String | null | undefined>(null)
-  const [zone, setZone] = useState<String | null | undefined>(null)
+  // const [emirates, setEmirates] = useState<String | null | undefined>(null)
+  // const [profession, setProfession] = useState<String | null | undefined>(null)
+  // const [zone, setZone] = useState<String | null | undefined>(null)
 
 
-  const [houseName, setHouseName] = useState<String | null | undefined>(null)
-  const [district, setDistrict] = useState<String | null | undefined>(null)
-  const [panjayath, setPanjayath] = useState<String | null | undefined>(null)
-  const [pin, setPin] = useState<String | null | undefined>(null)
-  const [, setPanjayat] = useState<String | null | undefined>(null)
+  // const [houseName, setHouseName] = useState<String | null | undefined>(null)
+  // const [district, setDistrict] = useState<String | null | undefined>(null)
+  // const [panjayath, setPanjayath] = useState<String | null | undefined>(null)
+  // const [pin, setPin] = useState<String | null | undefined>(null)
+  // const [, setPanjayat] = useState<String | null | undefined>(null)
 
 
 
@@ -92,18 +88,6 @@ const RegisterPage = () => {
   // ** Hook
   const theme = useTheme()
 
-  const handleChange = (prop: keyof State) => (event: ChangeEvent<HTMLInputElement>) => {
-    setValues({ ...values, [prop]: event.target.value })
-  }
-  const handleClickShowPassword = () => {
-    setValues({ ...values, showPassword: !values.showPassword })
-  }
-  const handleMouseDownPassword = (event: MouseEvent<HTMLButtonElement>) => {
-    event.preventDefault()
-  }
-  const CustomInput = forwardRef((props, ref) => {
-    return <TextField fullWidth {...props} inputRef={ref} label='Birth Date' autoComplete='off' />
-  })
   return (
     <Box className='content-center'>
       <Card sx={{ zIndex: 1, width: '66.6667% !important' }}>
@@ -240,7 +224,7 @@ const RegisterPage = () => {
               </Grid>
 
               <Grid item xs={12} sm={6}>
-                <TextField fullWidth type='Text' label='Qualification' placeholder='carterleonard@gmail.com' />
+                <TextField fullWidth type='Text' label='Qualification' value={qualification} onChange={e => setQualification(e.currentTarget.value)}  placeholder='carterleonard@gmail.com' />
               </Grid>
 
               <Grid item xs={12} sm={6} >
