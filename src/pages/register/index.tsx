@@ -32,10 +32,7 @@ import FooterIllustrationsV1 from 'src/views/pages/auth/FooterIllustration'
 import Grid from '@mui/material/Grid'
 import { Select } from '@mui/material'
 
-interface State {
-  password: string
-  showPassword: boolean
-}
+
 
 // ** Styled Components
 const Card = styled(MuiCard)<CardProps>(({ theme }) => ({
@@ -66,17 +63,7 @@ const RegisterPage = () => {
   const [whatsapp, setWhatsapp] = useState<String | null | undefined>(null)
   const [qualification, setQualification] = useState<String | null | undefined>(null)
 
-  // const [blood, setBlood] = useState<String | null | undefined>(null)
-  // const [emirates, setEmirates] = useState<String | null | undefined>(null)
-  // const [profession, setProfession] = useState<String | null | undefined>(null)
-  // const [zone, setZone] = useState<String | null | undefined>(null)
 
-
-  // const [houseName, setHouseName] = useState<String | null | undefined>(null)
-  // const [district, setDistrict] = useState<String | null | undefined>(null)
-  // const [panjayath, setPanjayath] = useState<String | null | undefined>(null)
-  // const [pin, setPin] = useState<String | null | undefined>(null)
-  // const [, setPanjayat] = useState<String | null | undefined>(null)
 
 
 
