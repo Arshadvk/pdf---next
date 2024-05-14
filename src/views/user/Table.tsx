@@ -9,6 +9,8 @@ import TableBody from '@mui/material/TableBody'
 import TableCell from '@mui/material/TableCell'
 import Typography from '@mui/material/Typography'
 import TableContainer from '@mui/material/TableContainer'
+import { useRouter } from 'next/router'
+
 
 // ** Types Imports
 
@@ -29,7 +31,7 @@ const statusObj: StatusObj = {
   rejected: { color: 'error' },
   current: { color: 'primary' },
   resigned: { color: 'warning' },
-  professional: { color: 'success' }
+  active: { color: 'success' }
 }
 
 interface RowType {
@@ -43,6 +45,7 @@ interface RowType {
 }
 
 const DashboardTable = ({data, type}:Props) => {
+  const router = useRouter()
   const rows =data
   return (
     <Card>
@@ -52,9 +55,6 @@ const DashboardTable = ({data, type}:Props) => {
             <TableRow>
               <TableCell>Name</TableCell>
               <TableCell>Email</TableCell>
-              <TableCell>Date</TableCell>
-              <TableCell>Salary</TableCell>
-              <TableCell>Age</TableCell>
               <TableCell>Status</TableCell>
               <TableCell>View</TableCell>
             </TableRow>
@@ -65,9 +65,6 @@ const DashboardTable = ({data, type}:Props) => {
                
                 <TableCell>{row.name}</TableCell>
                 <TableCell>{row.email}</TableCell>
-                <TableCell>{row.date}</TableCell>
-                <TableCell>{row.salary}</TableCell>
-                <TableCell>{row.age}</TableCell>
                 <TableCell>
                   <Chip
                     label={row.status}
@@ -80,8 +77,8 @@ const DashboardTable = ({data, type}:Props) => {
                     }}
                   />
                 </TableCell>
-                <TableCell>
-                  
+                <TableCell  onClick={()=>router.push(`/user/requests/${row.name}`)}>
+                  Details
                 </TableCell>
               </TableRow>
             ))}

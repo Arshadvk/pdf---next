@@ -5,7 +5,7 @@ import Card from '@mui/material/Card'
 import Typography from '@mui/material/Typography'
 
 // ** Demo Components Imports
-import TableBasic from 'src/views/tables/TableBasic'
+import TableBasic from 'src/views/admin/Table'
 
 const MUITable = () => {
   return (
@@ -13,7 +13,7 @@ const MUITable = () => {
       <Grid item xs={12}>
         <Typography variant='h5'>
           <Link href='https://mui.com/components/tables/' target='_blank'>
-           User Table
+           Admin List
           </Link>
         </Typography>
         <Typography variant='body2'>Tables display sets of data. They can be fully customized</Typography>
