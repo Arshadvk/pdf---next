@@ -69,6 +69,7 @@ const Dashboard = () => {
                 subtitle='Yearly Project'
                 icon={<BriefcaseVariantOutline />}
               />
+
             </Grid>
             <Grid item xs={6}>
               <CardStatisticsVerticalComponent
@@ -89,7 +90,7 @@ const Dashboard = () => {
         <Grid item xs={12} md={12} lg={8}>
           <DepositWithdraw />
         </Grid>
-  
+
       </Grid>
     </ApexChartWrapper>
   )
