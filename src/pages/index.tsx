@@ -71,6 +71,7 @@ const Dashboard = () => {
               />
 
             </Grid>
+
             <Grid item xs={6}>
               <CardStatisticsVerticalComponent
                 stats='15'
