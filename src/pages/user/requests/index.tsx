@@ -6,7 +6,6 @@ import Card from '@mui/material/Card'
 
 // ** Custom Components Imports
 import Table from 'src/views/user/Table'
-import { ThemeColor } from 'src/@core/layouts/types'
 
 interface RowType {
   age: number
@@ -19,11 +18,7 @@ interface RowType {
   designation: string
 }
 
-interface StatusObj {
-  [key: string]: {
-    color: ThemeColor
-  }
-}
+
 
 const rows: RowType[] = [
   {
@@ -108,13 +103,6 @@ const rows: RowType[] = [
   }
 ]
 
-const statusObj: StatusObj = {
-  applied: { color: 'info' },
-  rejected: { color: 'error' },
-  current: { color: 'primary' },
-  resigned: { color: 'warning' },
-  professional: { color: 'success' }
-}
 
 // ** Styled Component Import
 import ApexChartWrapper from 'src/@core/styles/libs/react-apexcharts'
@@ -128,7 +116,7 @@ const UserRequests = () => {
       <Grid item xs={12}>
         <Typography variant='h5'>
           <Link href='https://mui.com/components/tables/' target='_blank'>
-           User Requests 
+           User Requests
           </Link>
         </Typography>
       </Grid>
@@ -139,7 +127,7 @@ const UserRequests = () => {
       </Grid>
     </Grid>
     </ApexChartWrapper>
-    
+
   )
 }
 
