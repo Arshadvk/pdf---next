@@ -60,9 +60,9 @@ const UserRequests = () => {
         <Grid item xs={12} md={12} lg={6}>
           <div id='cardContainer'>
             <Card style={{ backgroundImage: "url('/images/cards/card.jpg')", backgroundSize: 'cover', backgroundPosition: 'center', backgroundColor: 'red', height: "30rem", padding: "2px" }}>
-              <Grid item xs={12} alignItems={'end'} textAlign={'end'}>
+              <Grid item xs={12} alignItems={'end'} justifyItems={'end'} textAlign={'end'}>
 
-                <ImgStyled src={imgSrc} style={{ marginTop: 70, marginRight: 78 }} alt='Profile Pic' />
+                <ImgStyled className='' src={imgSrc} style={{ marginTop: 70, marginLeft: 450 }} alt='Profile Pic' />
 
                 <Typography variant='h6' paddingRight={30} style={{ fontWeight: 'bold', color: "black" }}>
                   Harish

@@ -1,73 +1,70 @@
-import mongoose ,  { Document, Model, Schema } from "mongoose";
+import mongoose, { Document,  Schema } from "mongoose";
 
-export type MongoDBUser = Model<Document<any,any,any>>
-
+// Define the user schema
 const userSchema = new Schema({
-    name : {
-        type:String
+    name: {
+        type: String
     },
-    email:{
-        type :String
+    email: {
+        type: String
     },
-    date_of_birth : {
-        type : String
+    date_of_birth: {
+        type: String
     },
-    emirates : {
-        type : String
+    emirates: {
+        type: String
     },
-    blood : {
-        type : String
+    blood: {
+        type: String
     },
-    password:{
-        type : String
+    password: {
+        type: String
     },
-    tel:{
-        type : String
+    tel: {
+        type: String
     },
-    whatsapp:{
-        type : String
+    whatsapp: {
+        type: String
     },
-    role :{
-        type : Number,
-        required: true
+    role: {
+        type: Number
     },
-    qualificstion :{
-        type :String
+    qualificstion: {
+        type: String
     },
-    profession : {
-        type : String
+    profession: {
+        type: String
     },
-    zone : {
-        type : String
+    zone: {
+        type: String
     },
     address: {
-        type : {
-            house_name :{
-                type : String
-            }, 
-            district : {
-                type : String
-            },
-            panjayath : {
-                type : String 
-            },
-            pincode : {
-                type : Number
-            }
+        house_name: {
+            type: String
+        },
+        district: {
+            type: String
+        },
+        panjayath: {
+            type: String
+        },
+        pincode: {
+            type: Number
         }
     },
-    verifyed : {
-        type : Boolean,
-        default : false
+    verifyed: {
+        type: Boolean,
+        default: false
     },
-    legislative_assembly :{
-        type : String
+    legislative_assembly: {
+        type: String
     },
-    before_in_pdp : {
-        type : Boolean,
+    before_in_pdp: {
+        type: Boolean
     }
-},{
-    timestamps : {createdAt:true}
-})
+}, {
+    timestamps: { createdAt: true }
+});
 
-export const userModel : MongoDBUser = mongoose.connection.model<Document<any,any,any>>('user', userSchema)
+// Check if the model is already defined, otherwise define it
+export const userModel = mongoose.models.user || mongoose.model<Document<any, any, any>>('user', userSchema);

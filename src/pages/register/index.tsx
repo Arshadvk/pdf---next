@@ -31,7 +31,6 @@ import BlankLayout from 'src/@core/layouts/BlankLayout'
 import FooterIllustrationsV1 from 'src/views/pages/auth/FooterIllustration'
 import Grid from '@mui/material/Grid'
 import { Select } from '@mui/material'
-import Logo from 'src/logo'
 import axios from 'axios'
 
 
@@ -83,39 +82,47 @@ const RegisterPage = () => {
     setBlood(event.target.value as string);
   };
 
-  const handleSubmit = (e:any) =>{
-     e.preventDefault()
-    const user : any ={
-      name : name ,
-      email : email ,
-      number : number ,
-      dob : date_of_birth ,
-      whatsapp  : whatsapp ,
-      qualification :qualification ,
-      blood :blood ,
-      emirates : emirates ,
-      profession :profession ,
-      zone : zone ,
-      address : {
-        houseName : houseName ,
-        district :district ,
-        panjayath : panjayath ,
-        pin : pin
-      }
-    }
 
-    console.log(user)
-    axios.post('http://localhost:4000/a' , user).then((res)=>{
-      alert(res.data.ansar)
-    })
-  }
+  const handleSubmit = (e: any) => {
+    e.preventDefault();
+    const user = {
+      name,
+      email,
+      number,
+      dob: date_of_birth,
+      whatsapp,
+      qualification,
+      blood,
+      role: 1,
+      emirates,
+      profession,
+      zone,
+      address: {
+        houseName,
+        district,
+        panjayath,
+        pin,
+      },
+    };
+
+    console.log(user);
+
+    axios.get('/api/createuser')
+      .then((res) => {
+        alert(res.data);
+      })
+      .catch((error) => {
+        console.error('Error:', error);
+      });
+  };
+
 
   return (
     <Box className='content-center'>
       <Card sx={{ zIndex: 1, width: '66.6667% !important' }}>
         <CardContent sx={{ padding: theme => `${theme.spacing(12, 9, 7)} !important` }}>
           <Box sx={{ mb: 8, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-            <Logo/>
+           <img src="/images/logos/pcf.png" className='h-14' alt="" />
             <Typography
               variant='h6'
               sx={{

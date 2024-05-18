@@ -1,5 +1,4 @@
 // ** MUI Imports
-import Box from '@mui/material/Box'
 import Card from '@mui/material/Card'
 import Chip from '@mui/material/Chip'
 import Table from '@mui/material/Table'
@@ -7,7 +6,6 @@ import TableRow from '@mui/material/TableRow'
 import TableHead from '@mui/material/TableHead'
 import TableBody from '@mui/material/TableBody'
 import TableCell from '@mui/material/TableCell'
-import Typography from '@mui/material/Typography'
 import TableContainer from '@mui/material/TableContainer'
 import { useRouter } from 'next/router'
 
@@ -15,7 +13,7 @@ import { useRouter } from 'next/router'
 // ** Types Imports
 
 type Props = {
- data : Object[]
+ data : any
  type : string
 }
 
@@ -66,7 +64,7 @@ const DashboardTable = ({data, type}:Props) => {
                 <TableCell>{row.name}</TableCell>
                 <TableCell>{row.email}</TableCell>
                 <TableCell>
-                  <Chip
+                  {/* <Chip
                     label={row.status}
                     color={statusObj[row.status].color}
                     sx={{
@@ -75,9 +73,9 @@ const DashboardTable = ({data, type}:Props) => {
                       textTransform: 'capitalize',
                       '& .MuiChip-label': { fontWeight: 500 }
                     }}
-                  />
+                  /> */}
                 </TableCell>
-                <TableCell  onClick={()=>router.push(`/user/requests/${row.name}`)}>
+                <TableCell  onClick={()=>router.push(`/user/requests/${row._id}`)}>
                   Details
                 </TableCell>
               </TableRow>
