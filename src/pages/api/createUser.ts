@@ -1,6 +1,5 @@
 import { Request, Response } from "express"; // Assuming you're using Express for handling HTTP requests
 import connectMongoDB from "src/libs/database";
-import disconnetMongoDB from "src/libs/disconnect";
 import { userModel } from "src/models/user";
 
 async function handler(req: Request, res: Response) {
@@ -14,10 +13,7 @@ async function handler(req: Request, res: Response) {
   } catch (error) {
     console.error("Error:", error);
     res.status(500).json({ error: "Internal Server Error" });
-  } finally {
-    // Close the connection after handling the request
-    disconnetMongoDB()
-  }
+  } 
 }
 
 export default handler;

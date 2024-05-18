@@ -107,8 +107,11 @@ const RegisterPage = () => {
 
     console.log(user);
 
-    axios.get('/api/createuser')
-      .then((res) => {
+    axios.post('/api/createuser', user, {
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    }).then((res) => {
         alert(res.data);
       })
       .catch((error) => {
