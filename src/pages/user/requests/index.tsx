@@ -42,7 +42,7 @@ const UserRequests = () => {
         </Grid>
         <Grid item xs={12}>
           <Card>
-            <Table data={data} type='' />
+            <Table data={data} type={''}  />
           </Card>
         </Grid>
       </Grid>

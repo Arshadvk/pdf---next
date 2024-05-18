@@ -1,6 +1,5 @@
 // ** MUI Imports
 import Card from '@mui/material/Card'
-import Chip from '@mui/material/Chip'
 import Table from '@mui/material/Table'
 import TableRow from '@mui/material/TableRow'
 import TableHead from '@mui/material/TableHead'
@@ -17,35 +16,16 @@ type Props = {
  type : string
 }
 
-interface StatusObj {
-  [key: string]: {
-    color: ThemeColor
-  }
-}
-import { ThemeColor } from 'src/@core/layouts/types'
 
-const statusObj: StatusObj = {
-  applied: { color: 'info' },
-  rejected: { color: 'error' },
-  current: { color: 'primary' },
-  resigned: { color: 'warning' },
-  active: { color: 'success' }
-}
 
-interface RowType {
-  age: number
-  name: string
-  date: string
-  email: string
-  salary: string
-  status: string
-  designation: string
-}
 
-const DashboardTable = ({data, type}:Props) => {
+
+
+const DashboardTable = ({data }:Props) => {
   const router = useRouter()
   const rows =data
-  return (
+  
+return (
     <Card>
       <TableContainer>
         <Table sx={{ minWidth: 800 }} aria-label='table in dashboard'>
@@ -64,16 +44,7 @@ const DashboardTable = ({data, type}:Props) => {
                 <TableCell>{row.name}</TableCell>
                 <TableCell>{row.email}</TableCell>
                 <TableCell>
-                  {/* <Chip
-                    label={row.status}
-                    color={statusObj[row.status].color}
-                    sx={{
-                      height: 24,
-                      fontSize: '0.75rem',
-                      textTransform: 'capitalize',
-                      '& .MuiChip-label': { fontWeight: 500 }
-                    }}
-                  /> */}
+                 
                 </TableCell>
                 <TableCell  onClick={()=>router.push(`/user/requests/${row._id}`)}>
                   Details
