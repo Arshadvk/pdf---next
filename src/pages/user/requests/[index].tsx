@@ -4,7 +4,7 @@ import Typography from '@mui/material/Typography'
 import Link from '@mui/material/Link'
 import Card from '@mui/material/Card'
 import { styled } from '@mui/material/styles'
-import  ButtonBase  from '@mui/material/Button'
+import  Button  from '@mui/material/ButtonBase'
 
 
 // ** Custom Components Imports
@@ -103,7 +103,7 @@ const UserRequests = () => {
             </Card>
 
           </div>
-          <ButtonBase onClick={saveAsImage}>Save as Image</ButtonBase>
+          <Button onClick={saveAsImage}>Save as Image</Button>
 
         </Grid>
       </Grid>
