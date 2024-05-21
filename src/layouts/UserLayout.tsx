@@ -1,8 +1,7 @@
 // ** React Imports
-import { ReactNode } from 'react'
+import { ReactNode, useEffect } from 'react'
 
 // ** MUI Imports
-import Box from '@mui/material/Box'
 import { Theme } from '@mui/material/styles'
 import useMediaQuery from '@mui/material/useMediaQuery'
 
@@ -14,11 +13,11 @@ import VerticalLayout from 'src/@core/layouts/VerticalLayout'
 import VerticalNavItems from 'src/navigation/vertical'
 
 // ** Component Import
-import UpgradeToProButton from './components/UpgradeToProButton'
 import VerticalAppBarContent from './components/vertical/AppBarContent'
 
 // ** Hook Import
 import { useSettings } from 'src/@core/hooks/useSettings'
+import router from 'next/router'
 
 interface Props {
   children: ReactNode
@@ -37,20 +36,14 @@ const UserLayout = ({ children }: Props) => {
    *  ! Do not change this value unless you know what you are doing. It can break the template.
    */
   const hidden = useMediaQuery((theme: Theme) => theme.breakpoints.down('lg'))
+  useEffect(()=>{
+    
+    if (!localStorage.getItem("admin")){
+      router.push('/')
+    }
 
-  const UpgradeToProImg = () => {
-    return (
-      <Box sx={{ mx: 'auto' }}>
-        <a
-          target='_blank'
-          rel='noreferrer'
-          href='https://themeselection.com/products/materio-mui-react-nextjs-admin-template/'
-        >
-        
-        </a>
-      </Box>
-    )
-  }
+  },[])
+  
 
   return (
     <VerticalLayout
@@ -58,7 +51,6 @@ const UserLayout = ({ children }: Props) => {
       settings={settings}
       saveSettings={saveSettings}
       verticalNavItems={VerticalNavItems()} // Navigation Items
-      afterVerticalNavMenuContent={UpgradeToProImg}
       verticalAppBarContent={(
         props // AppBar Content
       ) => (
@@ -71,7 +63,6 @@ const UserLayout = ({ children }: Props) => {
       )}
     >
       {children}
-      <UpgradeToProButton />
     </VerticalLayout>
   )
 }

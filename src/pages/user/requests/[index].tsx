@@ -21,13 +21,18 @@ const ImgStyled = styled('img')(({ theme }) => ({
 
 // ** Styled Component Import
 import ApexChartWrapper from 'src/@core/styles/libs/react-apexcharts'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
 import html2canvas from 'html2canvas';
+import axios from 'axios'
 
 // ** Demo Components Imports
 
 const UserRequests = () => {
+  
+  useEffect(()=>{
+    axios.get(`/api/userid/`)
+  },[])
   const [imgSrc] = useState<string>('/images/avatars/img1.jpg')
 
 
@@ -53,7 +58,7 @@ const UserRequests = () => {
         <Grid item xs={12}>
           <Typography variant='h5'>
             <Link href='https://mui.com/components/tables/' target='_blank'>
-              User Requests
+              User Id
             </Link>
           </Typography>
         </Grid>
@@ -106,6 +111,7 @@ const UserRequests = () => {
           <Button onClick={saveAsImage}>Save as Image</Button>
 
         </Grid>
+        {/* <ResponsiveCard/> */}
       </Grid>
     </ApexChartWrapper>
 

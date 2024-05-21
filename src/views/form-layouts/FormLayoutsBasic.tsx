@@ -1,26 +1,28 @@
 // ** React Imports
-import { ChangeEvent, MouseEvent, useState, SyntheticEvent } from 'react'
+import { ChangeEvent, MouseEvent, useState } from 'react'
 
 // ** MUI Imports
 import Box from '@mui/material/Box'
 import Card from '@mui/material/Card'
 import Grid from '@mui/material/Grid'
-import Link from '@mui/material/Link'
 import Button from '@mui/material/Button'
 import TextField from '@mui/material/TextField'
 import CardHeader from '@mui/material/CardHeader'
 import InputLabel from '@mui/material/InputLabel'
 import IconButton from '@mui/material/IconButton'
-import Typography from '@mui/material/Typography'
 import CardContent from '@mui/material/CardContent'
 import FormControl from '@mui/material/FormControl'
 import OutlinedInput from '@mui/material/OutlinedInput'
 import InputAdornment from '@mui/material/InputAdornment'
 import FormHelperText from '@mui/material/FormHelperText'
+import Select from '@mui/material/Select'
+import MenuItem from '@mui/material/MenuItem'
+
 
 // ** Icons Imports
 import EyeOutline from 'mdi-material-ui/EyeOutline'
 import EyeOffOutline from 'mdi-material-ui/EyeOffOutline'
+import axios from 'axios'
 
 interface State {
   password: string
@@ -37,6 +39,10 @@ const FormLayoutsBasic = () => {
     password: '',
     showPassword: false
   })
+
+  const [name , setName] = useState<any>("")
+  const [email , setEmail] = useState<any>("")
+  const [number , setNumber] = useState<any>("")
 
   const handleChange = (prop: keyof State) => (event: ChangeEvent<HTMLInputElement>) => {
     setValues({ ...values, [prop]: event.target.value })
@@ -57,25 +63,58 @@ const FormLayoutsBasic = () => {
     event.preventDefault()
   }
 
+  const onSubmit =  (event: MouseEvent<HTMLButtonElement>) => {
+    event.preventDefault()
+    axios.post('/api/post/create-admin')
+  }
+
   return (
     <Card>
       <CardHeader title='Basic' titleTypographyProps={{ variant: 'h6' }} />
       <CardContent>
         <form onSubmit={e => e.preventDefault()}>
           <Grid container spacing={5}>
-            <Grid item xs={12}>
-              <TextField fullWidth label='Name' placeholder='Leonard Carter' />
+            <Grid item xs={6}>
+              <TextField fullWidth label='Name' value={name} onChange={(e)=>setName(e.target.value)} placeholder='Enter Your Name' />
             </Grid>
-            <Grid item xs={12}>
+            <Grid item xs={6}>
               <TextField
                 fullWidth
                 type='email'
                 label='Email'
-                placeholder='carterleonard@gmail.com'
-                helperText='You can use letters, numbers & periods'
+                value={email}
+                onChange={(e)=>setEmail(e.target.value)}
+                placeholder='Enter Your Number'
               />
             </Grid>
-            <Grid item xs={12}>
+            <Grid item xs={6}>
+              <TextField
+                fullWidth
+                type='text'
+                label='Number'
+                placeholder='Enter Your Number'
+              />
+            </Grid>
+            <Grid item xs={12} sm={6}>
+              <FormControl fullWidth>
+                <InputLabel id='form-layouts-separator-select-label'>Emirates</InputLabel>
+                <Select
+                  label='Emirates'
+                  defaultValue=''
+                  id='form-layouts-separator-select'
+                  labelId='form-layouts-separator-select-label'
+                >
+                  <MenuItem value='Abu Dhabi'> Abu Dhabi</MenuItem>
+                  <MenuItem value='Dubai'>Dubai</MenuItem>
+                  <MenuItem value='Sharjah'> Sharjah</MenuItem>
+                  <MenuItem value='Ajman'> Ajman</MenuItem>
+                  <MenuItem value='Umm Al Quwain'> Umm Al Quwain</MenuItem>
+                  <MenuItem value='Ras Al Khaimah'> Ras Al Khaimah</MenuItem>
+                  <MenuItem value='Fujairah'>  Fujairah</MenuItem>
+                </Select>
+              </FormControl>
+            </Grid> 
+            <Grid item xs={6}>
               <FormControl fullWidth>
                 <InputLabel htmlFor='form-layouts-basic-password'>Password</InputLabel>
                 <OutlinedInput
@@ -103,7 +142,7 @@ const FormLayoutsBasic = () => {
                 </FormHelperText>
               </FormControl>
             </Grid>
-            <Grid item xs={12}>
+            <Grid item xs={6}>
               <FormControl fullWidth>
                 <InputLabel htmlFor='form-layouts-confirm-password'>Confirm Password</InputLabel>
                 <OutlinedInput
@@ -141,15 +180,9 @@ const FormLayoutsBasic = () => {
                   justifyContent: 'space-between'
                 }}
               >
-                <Button type='submit' variant='contained' size='large'>
+                <Button onClick={() => onSubmit} type='submit' variant='contained' size='large'>
                   Get Started!
                 </Button>
-                <Box sx={{ display: 'flex', alignItems: 'center' }}>
-                  <Typography sx={{ mr: 2 }}>Already have an account?</Typography>
-                  <Link href='/' onClick={(e: SyntheticEvent) => e.preventDefault()}>
-                    Log in
-                  </Link>
-                </Box>
               </Box>
             </Grid>
           </Grid>

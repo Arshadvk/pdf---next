@@ -1,5 +1,5 @@
 // ** React Imports
-import { ChangeEvent, MouseEvent, ReactNode, useState } from 'react'
+import { ChangeEvent, MouseEvent, ReactNode, useEffect, useState } from 'react'
 
 // ** Next Imports
 import Link from 'next/link'
@@ -80,7 +80,19 @@ const LoginPage = () => {
     event.preventDefault()
   }
 
-  return (
+  const handleSubmit = (event: MouseEvent<HTMLButtonElement>) =>{
+    event.preventDefault()
+    router.push('/dashboard')
+    localStorage.setItem("admin" , "hewllo");
+  } 
+  
+  useEffect(()=>{
+    if (localStorage.getItem("admin")){
+      router.push('/dashboard')
+    }
+  },[])
+
+return (
     <Box className='content-center'>
       <Card sx={{ zIndex: 1 }}>
         <CardContent sx={{ padding: theme => `${theme.spacing(12, 9, 7)} !important` }}>
@@ -141,7 +153,7 @@ const LoginPage = () => {
               size='large'
               variant='contained'
               sx={{ marginBottom: 7 }}
-              onClick={() => router.push('/dashboard')}
+              onClick={(e) =>handleSubmit(e) }
             >
               Login
             </Button>

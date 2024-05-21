@@ -42,6 +42,7 @@ const UserDropdown = () => {
 
   const handleDropdownClose = (url?: string) => {
     if (url) {
+      localStorage.removeItem("admin")
       router.push(url)
     }
     setAnchorEl(null)

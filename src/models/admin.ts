@@ -10,7 +10,8 @@ const adminSchema = new Schema({
         type: String 
     },
     role: { 
-        type: String 
+        type: String ,
+        default : "A"
     },
     password: {
          type: String 

@@ -107,7 +107,7 @@ const RegisterPage = () => {
 
     console.log(user);
 
-    axios.post('/api/createuser', user, {
+    axios.post('/api/post/createuser', user, {
       headers: {
         'Content-Type': 'application/json',
       },
