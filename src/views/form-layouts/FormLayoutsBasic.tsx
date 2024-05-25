@@ -24,6 +24,7 @@ import EyeOutline from 'mdi-material-ui/EyeOutline'
 import EyeOffOutline from 'mdi-material-ui/EyeOffOutline'
 import axios from 'axios'
 
+
 interface State {
   password: string
   showPassword: boolean
@@ -43,11 +44,15 @@ const FormLayoutsBasic = () => {
   const [name , setName] = useState<any>("")
   const [email , setEmail] = useState<any>("")
   const [number , setNumber] = useState<any>("")
+  const [emirates, setEmirates] = useState<any | null | undefined>(null)
+
 
   const handleChange = (prop: keyof State) => (event: ChangeEvent<HTMLInputElement>) => {
     setValues({ ...values, [prop]: event.target.value })
   }
-
+  const handleEmiratesChange = (event: any) => {
+    setEmirates(event.target.value);
+  }
   const handleConfirmPassChange = (prop: keyof State) => (event: ChangeEvent<HTMLInputElement>) => {
     setConfirmPassValues({ ...confirmPassValues, [prop]: event.target.value })
   }
@@ -63,9 +68,27 @@ const FormLayoutsBasic = () => {
     event.preventDefault()
   }
 
-  const onSubmit =  (event: MouseEvent<HTMLButtonElement>) => {
+  const onSubmit = async  (event: MouseEvent<HTMLButtonElement>) => {
     event.preventDefault()
-    axios.post('/api/post/create-admin')
+    const admin = {
+      name , 
+      email ,
+      number ,
+      emirates , 
+      password : values.password
+    }
+    console.log(admin)
+    axios.post('/api/post/create-admin' , admin, {
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    }).then((res) => {
+        alert(res.data);
+      })
+      .catch((error) => {
+        console.error('Error:', error);
+      });
+
   }
 
   return (
@@ -92,28 +115,33 @@ const FormLayoutsBasic = () => {
                 fullWidth
                 type='text'
                 label='Number'
+                value={number}
+                onChange={(e)=>setNumber(e.target.value)}
                 placeholder='Enter Your Number'
               />
             </Grid>
-            <Grid item xs={12} sm={6}>
-              <FormControl fullWidth>
-                <InputLabel id='form-layouts-separator-select-label'>Emirates</InputLabel>
-                <Select
-                  label='Emirates'
-                  defaultValue=''
-                  id='form-layouts-separator-select'
-                  labelId='form-layouts-separator-select-label'
-                >
-                  <MenuItem value='Abu Dhabi'> Abu Dhabi</MenuItem>
-                  <MenuItem value='Dubai'>Dubai</MenuItem>
-                  <MenuItem value='Sharjah'> Sharjah</MenuItem>
-                  <MenuItem value='Ajman'> Ajman</MenuItem>
-                  <MenuItem value='Umm Al Quwain'> Umm Al Quwain</MenuItem>
-                  <MenuItem value='Ras Al Khaimah'> Ras Al Khaimah</MenuItem>
-                  <MenuItem value='Fujairah'>  Fujairah</MenuItem>
-                </Select>
-              </FormControl>
-            </Grid> 
+
+            <Grid item xs={12} sm={6} >
+                <FormControl fullWidth>
+                  <InputLabel id='form-layouts-separator-select-label'>Emirates</InputLabel>
+                  <Select
+                    label='Emirates'
+                    value={emirates}
+                    onChange={handleEmiratesChange}
+                    id='form-layouts-separator-select'
+                    labelId='form-layouts-separator-select-label'
+                  >
+                    <MenuItem value='Abu Dhabi'>Abu Dhabi</MenuItem>
+                    <MenuItem value='Dubai'>Dubai</MenuItem>
+                    <MenuItem value='Sharjah'>Sharjah</MenuItem>
+                    <MenuItem value='Ajman'>Ajman</MenuItem>
+                    <MenuItem value='Umm Al Quwain'>Umm Al Quwain</MenuItem>
+                    <MenuItem value='Ras Al Khaimah'>Ras Al Khaimah</MenuItem>
+                    <MenuItem value='Fujairah'>Fujairah</MenuItem>
+                  </Select>
+                </FormControl>
+              </Grid>
+
             <Grid item xs={6}>
               <FormControl fullWidth>
                 <InputLabel htmlFor='form-layouts-basic-password'>Password</InputLabel>
@@ -180,7 +208,7 @@ const FormLayoutsBasic = () => {
                   justifyContent: 'space-between'
                 }}
               >
-                <Button onClick={() => onSubmit} type='submit' variant='contained' size='large'>
+                <Button onClick={(e) => onSubmit(e)} type='submit' variant='contained' size='large'>
                   Get Started!
                 </Button>
               </Box>

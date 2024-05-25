@@ -24,4 +24,4 @@ const adminSchema = new Schema({
     }
 })
 
-export const adminModel: MongoDbAdmin = mongoose.connection.model<Document<any, any, any>>("admin", adminSchema)
+export const adminModel = mongoose.models.admin || mongoose.connection.model<Document<any, any, any>>("admin", adminSchema)

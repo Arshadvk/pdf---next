@@ -34,6 +34,8 @@ import BlankLayout from 'src/@core/layouts/BlankLayout'
 
 // ** Demo Imports
 import FooterIllustrationsV1 from 'src/views/pages/auth/FooterIllustration'
+import axios from 'axios';
+import Swal from 'sweetalert2';
 
 interface State {
   password: string
@@ -65,6 +67,8 @@ const LoginPage = () => {
     showPassword: false
   })
 
+  const [email, setEmail] = useState()
+
   // ** Hook
   const router = useRouter()
 
@@ -80,24 +84,55 @@ const LoginPage = () => {
     event.preventDefault()
   }
 
-  const handleSubmit = (event: MouseEvent<HTMLButtonElement>) =>{
+  const handleSubmit = (event: MouseEvent<HTMLButtonElement>) => {
     event.preventDefault()
-    router.push('/dashboard')
-    localStorage.setItem("admin" , "hewllo");
-  } 
-  
-  useEffect(()=>{
-    if (localStorage.getItem("admin")){
+    const user = {
+      email,
+      password: values.password
+    }
+
+    if (!user.email) {
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'Enter Your Email!',
+      });
+    } else {
+      axios.post('/api/post/auth/admin', user, {
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      }).then(() => {
+        localStorage.setItem("admin", "hewllo");
+        router.push('/dashboard');
+      })
+        .catch((error) => {
+          console.error('Error:', error);
+          Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'Something went wrong!',
+          });
+      });
+
+    }
+
+
+
+  }
+
+  useEffect(() => {
+    if (localStorage.getItem("admin")) {
       router.push('/dashboard')
     }
-  },[])
+  }, [])
 
-return (
+  return (
     <Box className='content-center'>
       <Card sx={{ zIndex: 1 }}>
         <CardContent sx={{ padding: theme => `${theme.spacing(12, 9, 7)} !important` }}>
           <Box sx={{ mb: 8, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-           <img src="/images/logos/pcf.png" className='h-14' alt="" />
+            <img src="/images/logos/pcf.png" className='h-14' alt="" />
             <Typography
               variant='h6'
               sx={{
@@ -117,7 +152,7 @@ return (
             </Typography>
           </Box>
           <form noValidate autoComplete='off' onSubmit={e => e.preventDefault()}>
-            <TextField autoFocus fullWidth id='email' label='Email' sx={{ marginBottom: 4 }} />
+            <TextField autoFocus fullWidth value={email} onChange={(e) => setEmail(e.target.value)} id='email' label='Email' sx={{ marginBottom: 4 }} />
             <FormControl fullWidth>
               <InputLabel htmlFor='auth-login-password'>Password</InputLabel>
               <OutlinedInput
@@ -153,7 +188,7 @@ return (
               size='large'
               variant='contained'
               sx={{ marginBottom: 7 }}
-              onClick={(e) =>handleSubmit(e) }
+              onClick={(e) => handleSubmit(e)}
             >
               Login
             </Button>

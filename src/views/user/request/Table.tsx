@@ -1,5 +1,4 @@
 // ** MUI Imports
-import Box from '@mui/material/Box'
 import Card from '@mui/material/Card'
 import Chip from '@mui/material/Chip'
 import Table from '@mui/material/Table'
@@ -7,7 +6,6 @@ import TableRow from '@mui/material/TableRow'
 import TableHead from '@mui/material/TableHead'
 import TableBody from '@mui/material/TableBody'
 import TableCell from '@mui/material/TableCell'
-import Typography from '@mui/material/Typography'
 import TableContainer from '@mui/material/TableContainer'
 import { useRouter } from 'next/router'
 
@@ -34,19 +32,12 @@ const statusObj: StatusObj = {
   active: { color: 'success' }
 }
 
-interface RowType {
-  age: number
-  name: string
-  date: string
-  email: string
-  salary: string
-  status: string
-  designation: string
-}
+i
 
-const RequestTable = ({data, type}:Props) => {
+const RequestTable = ({data}:Props) => {
   const router = useRouter()
   const rows =data
+
   return (
     <Card>
       <TableContainer>
