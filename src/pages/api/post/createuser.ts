@@ -5,10 +5,7 @@ import { userModel } from "src/models/user";
 async function handler(req: Request, res: Response) {
 
   try {
-    if(req.method != "POST"){
-      res.status(500).json({ error: "Internal Server Error" });
-
-    }
+   
     connectMongoDB(); // Assuming connectMongoDB returns a Promise
     console.log(req.body)
     const Newuser = await userModel.create(req.body)

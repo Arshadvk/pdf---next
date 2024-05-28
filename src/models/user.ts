@@ -4,19 +4,17 @@ import mongoose, { Document,  Schema } from "mongoose";
 const userSchema = new Schema({
     name: {
         type: String ,
-        require :true
     },
     email: {
         type: String ,
-        unique : true,
-        require :true
+        unique:true
+        
     },
     date_of_birth: {
         type: String
     },
     emirates: {
         type: String ,
-        require :true
 
     },
     blood: {
@@ -33,6 +31,10 @@ const userSchema = new Schema({
     },
     role: {
         type: Number
+    },
+    status:{
+        type: String ,
+        default : "pending"
     },
     image: {
         type: String

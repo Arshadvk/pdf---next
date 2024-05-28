@@ -1,7 +1,6 @@
 // ** MUI Imports
 import Grid from '@mui/material/Grid'
 import Typography from '@mui/material/Typography'
-import Link from '@mui/material/Link'
 import Card from '@mui/material/Card'
 import { styled } from '@mui/material/styles'
 import  Button  from '@mui/material/ButtonBase'
@@ -57,9 +56,7 @@ const UserRequests = () => {
       <Grid container spacing={6}>
         <Grid item xs={12}>
           <Typography variant='h5'>
-            <Link href='https://mui.com/components/tables/' target='_blank'>
               User Id
-            </Link>
           </Typography>
         </Grid>
         <Grid item xs={12} md={12} lg={6}>

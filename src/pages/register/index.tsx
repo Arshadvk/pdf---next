@@ -82,32 +82,34 @@ const RegisterPage = () => {
   };
 
 
-  const handleSubmit = async (e:any) => {
+  const handleSubmit = async (e: any) => {
     e.preventDefault();
-
-    const formData = new FormData();
-    formData.append('name', name);
-    formData.append('email', email);
-    formData.append('number', number);
-    formData.append('dob', date_of_birth);
-    formData.append('whatsapp', whatsapp);
-    formData.append('image', image);
-    formData.append('blood', blood);
-    formData.append('emirates', emirates);
-    formData.append('profession', profession);
-    formData.append('zone', zone);
-    formData.append('houseName', houseName);
-    formData.append('district', district);
-    formData.append('panjayath', panjayath);
-    formData.append('pin', pin);
+    const user = {
+      name,
+      email,
+      number,
+      dob: date_of_birth,
+      whatsapp,
+      blood,
+      emirates,
+      profession,
+      zone,
+      address: {
+        houseName,
+        district,
+        panjayath,
+        pin
+      }
+    }
 
     try {
-      const res = await axios.post('/api/post/createuser', formData, {
+      axios.post('/api/post/createuser', user, {
         headers: {
-          'Content-Type': 'multipart/form-data',
+          'Content-Type':  'application/json',
         },
-      });
-      alert('File uploaded successfully: ' + res.data.filePath);
+      }).then(()=>{
+        alert('File uploaded successfully: ')
+      })
     } catch (error) {
       console.error('Error uploading file:', error);
     }
@@ -120,7 +122,7 @@ const RegisterPage = () => {
       <Card sx={{ zIndex: 1, width: '66.6667% !important' }}>
         <CardContent sx={{ padding: theme => `${theme.spacing(12, 9, 7)} !important` }}>
           <Box sx={{ mb: 8, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-           <img src="/images/logos/pcf.png" className='h-14' alt="" />
+            <img src="/images/logos/pcf.png" className='h-14' alt="" />
             <Typography
               variant='h6'
               sx={{
