@@ -3,16 +3,21 @@ import mongoose, { Document,  Schema } from "mongoose";
 // Define the user schema
 const userSchema = new Schema({
     name: {
-        type: String
+        type: String ,
+        require :true
     },
     email: {
-        type: String
+        type: String ,
+        unique : true,
+        require :true
     },
     date_of_birth: {
         type: String
     },
     emirates: {
-        type: String
+        type: String ,
+        require :true
+
     },
     blood: {
         type: String
@@ -29,7 +34,7 @@ const userSchema = new Schema({
     role: {
         type: Number
     },
-    qualificstion: {
+    image: {
         type: String
     },
     profession: {

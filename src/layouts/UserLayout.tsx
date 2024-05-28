@@ -38,7 +38,7 @@ const UserLayout = ({ children }: Props) => {
   const hidden = useMediaQuery((theme: Theme) => theme.breakpoints.down('lg'))
   useEffect(()=>{
     
-    if (!localStorage.getItem("admin")){
+    if (!localStorage.getItem("admin") && !localStorage.getItem("super") ){
       router.push('/')
     }
 

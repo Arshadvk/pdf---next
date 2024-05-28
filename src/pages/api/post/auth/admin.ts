@@ -2,6 +2,9 @@ import { Request, Response } from "express";
 import connectMongoDB from "src/libs/database";
 import { adminModel } from "src/models/admin";
 import bcrypt from "bcrypt";
+import jwt from "jsonwebtoken";
+
+const JWT_SECRET = process.env.JWT_SECRET || "your_jwt_secret"; // Use environment variable for secret
 
 async function loginHandler(req: Request, res: Response) {
   try {
@@ -26,6 +29,7 @@ async function loginHandler(req: Request, res: Response) {
     if (!storedHashedPassword) {
       console.error("No hashed password found for admin:", admin);
        res.status(500).json({ error: "Internal Server Error" });
+
     }
 
     // Compare the provided password with the hashed password in the database
@@ -34,9 +38,17 @@ async function loginHandler(req: Request, res: Response) {
       return res.status(401).json({ error: "Invalid email or password" });
     }
 
-    // Respond with the admin data (excluding the password)
+    // Generate JWT token
+    const token = jwt.sign(
+      { id: admin._id, email: admin.email },
+      JWT_SECRET,
+      { expiresIn: "1h" } // Token expires in 1 hour
+    );
 
-    res.status(200).json(admin);
+    // Respond with the admin data (excluding the password) and token
+ // Exclude the password field
+ const type = admin.role === "A" ? "admin" : "super"
+    res.status(200).json({ type , token });
   } catch (error) {
     console.error("Error:", error);
     res.status(500).json({ error: "Internal Server Error" });

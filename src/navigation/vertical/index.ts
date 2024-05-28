@@ -1,17 +1,13 @@
-// ** Icon imports
-import Table from 'mdi-material-ui/Table'
-import Home from 'mdi-material-ui/Home'
-import AccountCogOutline from 'mdi-material-ui/AccountCogOutline'
-import AccountPlus from 'mdi-material-ui/AccountPlus'
+import { useEffect, useState } from 'react';
+import Table from 'mdi-material-ui/Table';
+import Home from 'mdi-material-ui/Home';
+import AccountCogOutline from 'mdi-material-ui/AccountCogOutline';
+import AccountPlus from 'mdi-material-ui/AccountPlus';
+import AccountArrowLeft from 'mdi-material-ui/AccountArrowLeft';
+import { VerticalNavItemsType } from 'src/@core/layouts/types';
 
-import AccountArrowLeft from 'mdi-material-ui/AccountArrowLeft'
-
-
-// ** Type import
-import { VerticalNavItemsType } from 'src/@core/layouts/types'
-
-const navigation = (): VerticalNavItemsType => {
-  return [
+const useNavigation = (): VerticalNavItemsType => {
+  const [navItems, setNavItems] = useState<VerticalNavItemsType>([
     {
       title: 'Dashboard',
       icon: Home,
@@ -19,35 +15,48 @@ const navigation = (): VerticalNavItemsType => {
     },
     {
       title: 'User List',
-      icon: Table ,
+      icon: Table,
       path: '/user',
     },
     {
       title: 'User Requests',
-      icon: AccountArrowLeft ,
+      icon: AccountArrowLeft,
       path: '/user/requests',
     },
     {
       title: 'User Register',
-      icon: AccountPlus ,
+      icon: AccountPlus,
       path: '/user/register',
-    },
-     {
-      title: 'Admin List',
-      icon: Table ,
-      path: '/admin',
-    },
-    {
-      title: 'Admin Register',
-      icon: AccountPlus ,
-      path: '/admin/register',
     },
     {
       title: 'Profile',
       icon: AccountCogOutline,
       path: '/profile'
-    },   
-  ]
-}
+    },
+  ]);
 
-export default navigation
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const isSuperAdmin = Boolean(localStorage.getItem('super'));
+      if (isSuperAdmin) {
+        setNavItems(prevNavItems => [
+          ...prevNavItems,
+          {
+            title: 'Admin List',
+            icon: Table,
+            path: '/admin',
+          },
+          {
+            title: 'Admin Register',
+            icon: AccountPlus,
+            path: '/admin/register',
+          }
+        ]);
+      }
+    }
+  }, []);
+
+  return navItems;
+};
+
+export default useNavigation;

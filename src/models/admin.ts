@@ -7,7 +7,8 @@ const adminSchema = new Schema({
         type: String
     },
     email: { 
-        type: String 
+        type: String ,
+        unique : true
     },
     role: { 
         type: String ,

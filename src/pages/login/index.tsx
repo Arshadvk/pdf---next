@@ -102,8 +102,8 @@ const LoginPage = () => {
         headers: {
           'Content-Type': 'application/json',
         },
-      }).then(() => {
-        localStorage.setItem("admin", "hewllo");
+      }).then((res) => {
+        localStorage.setItem(res.data.type , res.data.token);
         router.push('/dashboard');
       })
         .catch((error) => {
@@ -122,7 +122,7 @@ const LoginPage = () => {
   }
 
   useEffect(() => {
-    if (localStorage.getItem("admin")) {
+    if (localStorage.getItem("admin") || localStorage.getItem("super")) {
       router.push('/dashboard')
     }
   }, [])
@@ -152,7 +152,7 @@ const LoginPage = () => {
             </Typography>
           </Box>
           <form noValidate autoComplete='off' onSubmit={e => e.preventDefault()}>
-            <TextField autoFocus fullWidth value={email} onChange={(e) => setEmail(e.target.value)} id='email' label='Email' sx={{ marginBottom: 4 }} />
+            <TextField  fullWidth type='email' value={email} onChange={e => setEmail(e.currentTarget.value)} id='email' label='Email' sx={{ marginBottom: 4 }} />
             <FormControl fullWidth>
               <InputLabel htmlFor='auth-login-password'>Password</InputLabel>
               <OutlinedInput

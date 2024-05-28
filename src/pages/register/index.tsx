@@ -32,7 +32,7 @@ import FooterIllustrationsV1 from 'src/views/pages/auth/FooterIllustration'
 import Grid from '@mui/material/Grid'
 import { Select } from '@mui/material'
 import axios from 'axios'
-
+import multer from 'multer'
 
 
 // ** Styled Components
@@ -62,7 +62,7 @@ const RegisterPage = () => {
   const [number, setNumber] = useState<any | null | undefined>(null)
   const [date_of_birth, setDOB] = useState<any | null | undefined>(null)
   const [whatsapp, setWhatsapp] = useState<any | null | undefined>(null)
-  const [qualification, setQualification] = useState<any | null | undefined>(null)
+  const [image, setImage] = useState<any | null | undefined>(null)
 
   const [blood, setBlood] = useState<any | null | undefined>(null)
   const [emirates, setEmirates] = useState<any | null | undefined>(null)
@@ -83,41 +83,38 @@ const RegisterPage = () => {
   };
 
 
-  const handleSubmit = (e: any) => {
+  const handleSubmit = async (e:any) => {
     e.preventDefault();
-    const user = {
-      name,
-      email,
-      number,
-      dob: date_of_birth,
-      whatsapp,
-      qualification,
-      blood,
-      role: 1,
-      emirates,
-      profession,
-      zone,
-      address: {
-        houseName,
-        district,
-        panjayath,
-        pin,
-      },
-    };
 
-    console.log(user);
+    const formData = new FormData();
+    formData.append('name', name);
+    formData.append('email', email);
+    formData.append('number', number);
+    formData.append('dob', date_of_birth);
+    formData.append('whatsapp', whatsapp);
+    formData.append('image', image);
+    formData.append('blood', blood);
+    formData.append('role', 1);
+    formData.append('emirates', emirates);
+    formData.append('profession', profession);
+    formData.append('zone', zone);
+    formData.append('houseName', houseName);
+    formData.append('district', district);
+    formData.append('panjayath', panjayath);
+    formData.append('pin', pin);
 
-    axios.post('/api/post/createuser', user, {
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    }).then((res) => {
-        alert(res.data);
-      })
-      .catch((error) => {
-        console.error('Error:', error);
+    try {
+      const res = await axios.post('/api/post/createuser', formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
       });
+      alert('File uploaded successfully: ' + res.data.filePath);
+    } catch (error) {
+      console.error('Error uploading file:', error);
+    }
   };
+
 
 
   return (
@@ -197,7 +194,7 @@ const RegisterPage = () => {
               </Grid>
 
               <Grid item xs={12} sm={6}>
-                <TextField fullWidth type='Text' label='Qualification' value={qualification} onChange={e => setQualification(e.currentTarget.value)} placeholder='carterleonard@gmail.com' />
+                <TextField fullWidth type='file' label='Photo' value={image} onChange={e => setImage(e.currentTarget.value)} />
               </Grid>
 
               <Grid item xs={12} sm={6} >
