@@ -67,7 +67,7 @@ const LoginPage = () => {
     showPassword: false
   })
 
-  const [email, setEmail] = useState()
+  const [email, setEmail] = useState<any>()
 
   // ** Hook
   const router = useRouter()

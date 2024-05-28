@@ -32,7 +32,6 @@ import FooterIllustrationsV1 from 'src/views/pages/auth/FooterIllustration'
 import Grid from '@mui/material/Grid'
 import { Select } from '@mui/material'
 import axios from 'axios'
-import multer from 'multer'
 
 
 // ** Styled Components
