@@ -61,14 +61,6 @@ const TabInfo = () => {
             <TextField fullWidth type='number' label='Phone' placeholder='(123) 456-7890' />
           </Grid>
           <Grid item xs={12} sm={6}>
-            <TextField
-              fullWidth
-              label='Website'
-              placeholder='https://example.com/'
-              defaultValue='https://themeselection.com/'
-            />
-          </Grid>
-          <Grid item xs={12} sm={6}>
             <FormControl fullWidth>
               <InputLabel>Country</InputLabel>
               <Select label='Country' defaultValue='USA'>
@@ -105,7 +97,6 @@ const TabInfo = () => {
               <RadioGroup row defaultValue='male' aria-label='gender' name='account-settings-info-radio'>
                 <FormControlLabel value='male' label='Male' control={<Radio />} />
                 <FormControlLabel value='female' label='Female' control={<Radio />} />
-                <FormControlLabel value='other' label='Other' control={<Radio />} />
               </RadioGroup>
             </FormControl>
           </Grid>
