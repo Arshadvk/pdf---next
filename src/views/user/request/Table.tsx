@@ -32,7 +32,6 @@ const statusObj: StatusObj = {
   active: { color: 'success' }
 }
 
-i
 
 const RequestTable = ({data}:Props) => {
   const router = useRouter()
