@@ -12,8 +12,8 @@ import { useRouter } from 'next/router'
 // ** Types Imports
 
 type Props = {
- data : any
- type : string
+  data: any
+  type: string
 }
 
 
@@ -21,11 +21,11 @@ type Props = {
 
 
 
-const DashboardTable = ({data }:Props) => {
+const DashboardTable = ({ data }: Props) => {
   const router = useRouter()
-  const rows =data
-  
-return (
+  const rows = data
+
+  return (
     <Card>
       <TableContainer>
         <Table sx={{ minWidth: 800 }} aria-label='table in dashboard'>
@@ -40,13 +40,15 @@ return (
           <TableBody>
             {rows.map((row: any) => (
               <TableRow hover key={row.name} sx={{ '&:last-of-type td, &:last-of-type th': { border: 0 } }}>
-               
+
                 <TableCell>{row.name}</TableCell>
                 <TableCell>{row.email}</TableCell>
-                <TableCell>
-                 
-                </TableCell>
-                <TableCell  onClick={()=>router.push(`/user/requests/${row._id}`)}>
+                <TableCell >
+                  <span className={row.status == "pending" ? "bg-red-600 p-2 text-white rounded-full" : ""}>
+                    {row.status}
+                    </span>
+                  </TableCell>
+                <TableCell onClick={() => router.push(`/user/requests/${row._id}`)}>
                   Details
                 </TableCell>
               </TableRow>
