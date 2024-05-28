@@ -93,7 +93,6 @@ const RegisterPage = () => {
     formData.append('whatsapp', whatsapp);
     formData.append('image', image);
     formData.append('blood', blood);
-    formData.append('role', 1);
     formData.append('emirates', emirates);
     formData.append('profession', profession);
     formData.append('zone', zone);
