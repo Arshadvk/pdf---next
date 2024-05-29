@@ -14,7 +14,6 @@ import CardContent from '@mui/material/CardContent'
 import FormControl from '@mui/material/FormControl'
 import OutlinedInput from '@mui/material/OutlinedInput'
 import InputAdornment from '@mui/material/InputAdornment'
-import FormHelperText from '@mui/material/FormHelperText'
 import Select from '@mui/material/Select'
 import MenuItem from '@mui/material/MenuItem'
 
@@ -36,11 +35,7 @@ const FormLayoutsBasic = () => {
     password: '',
     showPassword: false
   })
-  const [confirmPassValues, setConfirmPassValues] = useState<State>({
-    password: '',
-    showPassword: false
-  })
-
+ 
   const [name , setName] = useState<any>("")
   const [email , setEmail] = useState<any>("")
   const [number , setNumber] = useState<any>("")
@@ -53,15 +48,8 @@ const FormLayoutsBasic = () => {
   const handleEmiratesChange = (event: any) => {
     setEmirates(event.target.value);
   }
-  const handleConfirmPassChange = (prop: keyof State) => (event: ChangeEvent<HTMLInputElement>) => {
-    setConfirmPassValues({ ...confirmPassValues, [prop]: event.target.value })
-  }
   const handleClickShowPassword = () => {
     setValues({ ...values, showPassword: !values.showPassword })
-  }
-
-  const handleClickConfirmPassShow = () => {
-    setConfirmPassValues({ ...confirmPassValues, showPassword: !confirmPassValues.showPassword })
   }
 
   const handleMouseDownPassword = (event: MouseEvent<HTMLButtonElement>) => {
@@ -93,14 +81,14 @@ const FormLayoutsBasic = () => {
 
   return (
     <Card>
-      <CardHeader title='Basic' titleTypographyProps={{ variant: 'h6' }} />
+      <CardHeader title='Admin Register' titleTypographyProps={{ variant: 'h6' }} />
       <CardContent>
         <form onSubmit={e => e.preventDefault()}>
           <Grid container spacing={5}>
-            <Grid item xs={6}>
+            <Grid item xs={12} md={6}>
               <TextField fullWidth label='Name' value={name} onChange={(e)=>setName(e.target.value)} placeholder='Enter Your Name' />
             </Grid>
-            <Grid item xs={6}>
+            <Grid item xs={12} md={6}>
               <TextField
                 fullWidth
                 type='email'
@@ -110,7 +98,7 @@ const FormLayoutsBasic = () => {
                 placeholder='Enter Your Number'
               />
             </Grid>
-            <Grid item xs={6}>
+            <Grid item xs={12} md={6}>
               <TextField
                 fullWidth
                 type='text'
@@ -121,7 +109,7 @@ const FormLayoutsBasic = () => {
               />
             </Grid>
 
-            <Grid item xs={12} sm={6} >
+            <Grid item xs={12} md={6} >
                 <FormControl fullWidth>
                   <InputLabel id='form-layouts-separator-select-label'>Emirates</InputLabel>
                   <Select
@@ -142,7 +130,7 @@ const FormLayoutsBasic = () => {
                 </FormControl>
               </Grid>
 
-            <Grid item xs={6}>
+            <Grid item xs={12} md={6}>
               <FormControl fullWidth>
                 <InputLabel htmlFor='form-layouts-basic-password'>Password</InputLabel>
                 <OutlinedInput
@@ -165,37 +153,7 @@ const FormLayoutsBasic = () => {
                     </InputAdornment>
                   }
                 />
-                <FormHelperText id='form-layouts-basic-password-helper'>
-                  Use 8 or more characters with a mix of letters, numbers & symbols
-                </FormHelperText>
-              </FormControl>
-            </Grid>
-            <Grid item xs={6}>
-              <FormControl fullWidth>
-                <InputLabel htmlFor='form-layouts-confirm-password'>Confirm Password</InputLabel>
-                <OutlinedInput
-                  label='Confirm Password'
-                  value={confirmPassValues.password}
-                  id='form-layouts-confirm-password'
-                  onChange={handleConfirmPassChange('password')}
-                  aria-describedby='form-layouts-confirm-password-helper'
-                  type={confirmPassValues.showPassword ? 'text' : 'password'}
-                  endAdornment={
-                    <InputAdornment position='end'>
-                      <IconButton
-                        edge='end'
-                        onClick={handleClickConfirmPassShow}
-                        onMouseDown={handleMouseDownPassword}
-                        aria-label='toggle password visibility'
-                      >
-                        {confirmPassValues.showPassword ? <EyeOutline /> : <EyeOffOutline />}
-                      </IconButton>
-                    </InputAdornment>
-                  }
-                />
-                <FormHelperText id='form-layouts-confirm-password-helper'>
-                  Make sure to type the same password as above
-                </FormHelperText>
+               
               </FormControl>
             </Grid>
             <Grid item xs={12}>
@@ -209,7 +167,7 @@ const FormLayoutsBasic = () => {
                 }}
               >
                 <Button onClick={(e) => onSubmit(e)} type='submit' variant='contained' size='large'>
-                  Get Started!
+                  Register
                 </Button>
               </Box>
             </Grid>

@@ -32,6 +32,7 @@ import FooterIllustrationsV1 from 'src/views/pages/auth/FooterIllustration'
 import Grid from '@mui/material/Grid'
 import { Select } from '@mui/material'
 import axios from 'axios'
+import Swal from 'sweetalert2'
 
 
 // ** Styled Components
@@ -101,18 +102,39 @@ const RegisterPage = () => {
         pin
       }
     }
-
     try {
       axios.post('/api/post/createuser', user, {
         headers: {
-          'Content-Type':  'application/json',
+          'Content-Type': 'application/json',
         },
-      }).then(()=>{
-        alert('File uploaded successfully: ')
-      })
+      }).then(() => {
+        Swal.fire({
+          title: 'Success!',
+          text: 'File uploaded successfully',
+          icon: 'success',
+          confirmButtonText: 'OK'
+        });
+      }).catch((error) => {
+        Swal.fire({
+          title: 'Error!',
+          text: `Error uploading file: ${error.message}`,
+          icon: 'error',
+          confirmButtonText: 'OK'
+        });
+        console.error('Error uploading file:', error);
+      });
     } catch (error) {
+
+      Swal.fire({
+        title: 'Error!',
+        text: `Error uploading file: ${error}`,
+        icon: 'error',
+        confirmButtonText: 'OK'
+      });
       console.error('Error uploading file:', error);
+      
     }
+    
   };
 
 

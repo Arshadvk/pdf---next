@@ -44,7 +44,7 @@ const DashboardTable = ({ data }: Props) => {
                 <TableCell>{row.name}</TableCell>
                 <TableCell>{row.email}</TableCell>
                 <TableCell >
-                  <span className={row.status == "pending" ? "bg-red-600 p-2 text-white rounded-full" : ""}>
+                  <span className={row.status == "pending" ? "bg-red-600 p-2 text-white rounded-full font-bold" : row.status == "verified" ? "bg-orange-600 p-2 text-white rounded-full font-bold" : "bg-green-600 p-2 text-white rounded-full font-bold"}>
                     {row.status}
                     </span>
                   </TableCell>
