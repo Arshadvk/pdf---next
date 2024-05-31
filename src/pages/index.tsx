@@ -15,9 +15,9 @@ const HomePage = () => {
   return (
     <div className='bg-gray-200 p-10'>
       <div className='flex gap-10 justify-between items-center'>
-        <img src="/images/logos/pcf.png" className='h-20' alt="" />
+        <img src="/images/logos/pcf.png" className='h-10 md:h-20' alt="" />
       
-        <div className='flex gap-16 font-bold'>
+        <div className='md:flex gap-16 font-bold hidden'>
           <p className={`${isActive('/')} cursor-pointer`} onClick={() => router.push('/')}>Home</p>
           <p className={`${isActive('/gallery')} cursor-pointer`} onClick={() => router.push('/gallery')}>Events</p>
           <p className={`${isActive('/about-us')} cursor-pointer`} onClick={() => router.push('/about-us')}>About Us</p>
@@ -27,13 +27,13 @@ const HomePage = () => {
         <div className='flex gap-4'>
           <a 
             style={{backgroundColor:'#184291'}} 
-            className='p-2 px-4 text-white font-bold rounded cursor-pointer' 
+            className='p-2 px-4 text-white font-bold rounded cursor-pointer text-xs' 
             onClick={() => router.push('/login')}
           >
             Login
           </a>
           <a 
-            className='bg-red-500 text-white p-2 px-4 font-bold rounded cursor-pointer' 
+            className='bg-red-500 text-white p-2 px-4 font-bold rounded cursor-pointer text-xs' 
             onClick={() => router.push('/register')}
           >
             Join Us

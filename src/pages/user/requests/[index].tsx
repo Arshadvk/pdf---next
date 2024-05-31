@@ -3,7 +3,7 @@ import Grid from '@mui/material/Grid'
 import Typography from '@mui/material/Typography'
 import Card from '@mui/material/Card'
 import { styled } from '@mui/material/styles'
-import  Button  from '@mui/material/ButtonBase'
+import  Button  from '@mui/material/Button'
 
 
 // ** Custom Components Imports
@@ -105,7 +105,7 @@ const UserRequests = () => {
             </Card>
 
           </div>
-          <Button onClick={saveAsImage}>Save as Image</Button>
+          <Button variant='contained' style={{margin:"15px"}} onClick={saveAsImage}>Save as Image</Button>
 
         </Grid>
         {/* <ResponsiveCard/> */}

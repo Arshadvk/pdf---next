@@ -30,7 +30,7 @@ import BlankLayout from 'src/@core/layouts/BlankLayout'
 // ** Demo Imports
 import FooterIllustrationsV1 from 'src/views/pages/auth/FooterIllustration'
 import Grid from '@mui/material/Grid'
-import { Select } from '@mui/material'
+import { Select, useMediaQuery } from '@mui/material'
 import axios from 'axios'
 import Swal from 'sweetalert2'
 
@@ -137,11 +137,15 @@ const RegisterPage = () => {
     
   };
 
+  const isSmallDevice = useMediaQuery('(max-width:1000px)');
+
+  // Set the height based on the media query
+  const cardHeight = isSmallDevice ? '90% !important' : '66.6667% !important';
 
 
   return (
     <Box className='content-center'>
-      <Card sx={{ zIndex: 1, width: '66.6667% !important' }}>
+      <Card sx={{ zIndex: 1, width: cardHeight }}>
         <CardContent sx={{ padding: theme => `${theme.spacing(12, 9, 7)} !important` }}>
           <Box sx={{ mb: 8, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
             <img src="/images/logos/pcf.png" className='h-14' alt="" />

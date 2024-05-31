@@ -48,7 +48,7 @@ const DashboardTable = ({ data }: Props) => {
                     {row.status}
                     </span>
                   </TableCell>
-                <TableCell onClick={() => router.push(`/user/requests/${row._id}`)}>
+                <TableCell className='cursor-pointer' onClick={() => router.push(`/user/requests/${row._id}`)}>
                   Details
                 </TableCell>
               </TableRow>

@@ -6,46 +6,17 @@ import CardHeader from '@mui/material/CardHeader'
 import Typography from '@mui/material/Typography'
 import CardContent from '@mui/material/CardContent'
 import MuiDivider, { DividerProps } from '@mui/material/Divider'
+import { useEffect, useState } from 'react'
+import axios from 'axios'
 
 interface DataType {
   logo: string
   title: string
-  amount: string
+  amount: any
   logoWidth: number
   logoHeight: number
 }
 
-const emiratesData = [
-  {
-    logoWidth: 28,
-    logoHeight: 29,
-    amount: '650',
-    title: 'Abu Dhabi',
-    logo: '/images/logos/abudhabi.png'
-  },
-  {
-    logoWidth: 38,
-    logoHeight: 38,
-    amount: '705',
-    title: 'Dubai',
-    logo: '/images/logos/dubai.png'
-  },
-  {
-    logoWidth: 20,
-    logoHeight: 28,
-    amount: '957',
-    title: 'Sharjah',
-    logo: '/images/logos/sharjah.png'
-  },
-  
-  {
-    logoWidth: 30,
-    logoHeight: 30,
-    amount: '540',
-    title: 'Fujairah',
-    logo: '/images/logos/fujairah.png'
-  },
-]
 
 const withdrawData = [
   {
@@ -70,7 +41,6 @@ const withdrawData = [
     logo: '/images/logos/ras_al_khaimah.png'
   },
 
-
 ]
 
 // Styled Divider component
@@ -85,6 +55,51 @@ const Divider = styled(MuiDivider)<DividerProps>(({ theme }) => ({
 }))
 
 const EmiratesList = () => {
+
+  const [data , setData] = useState<any>()
+  const [emiratesData , setEmiratesData] = useState<any>([])
+  useEffect(()=>{
+    axios.get('/api/dashboard').then((res)=>{  
+        setData(res.data)
+        console.log(res.data)
+    }).catch((error)=>{
+        console.log(error)
+    })
+    const data1 = [
+      {
+        logoWidth: 28,
+        logoHeight: 29,
+        amount: data?.count,
+        title: 'Abu Dhabi',
+        logo: '/images/logos/abudhabi.png'
+      },
+      {
+        logoWidth: 38,
+        logoHeight: 38,
+        amount: data?.count,
+        title: 'Dubai',
+        logo: '/images/logos/dubai.png'
+      },
+      {
+        logoWidth: 20,
+        logoHeight: 28,
+        amount: data?.count ,
+        title: 'Sharjah',
+        logo: '/images/logos/sharjah.png'
+      },
+      
+      {
+        logoWidth: 30,
+        logoHeight: 30,
+        amount: data?.count ,
+        title: 'Fujairah',
+        logo: '/images/logos/fujairah.png'
+      },
+    ]
+    setEmiratesData(data1)
+  },[])
+
+
   return (
     <Card sx={{ display: 'flex', justifyContent: 'space-between', flexDirection: ['column', 'column', 'row'] }}>
       <Box sx={{ width: '100%' }}>
