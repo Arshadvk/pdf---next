@@ -140,7 +140,7 @@ const RegisterPage = () => {
   const isSmallDevice = useMediaQuery('(max-width:1000px)');
 
   // Set the height based on the media query
-  const cardHeight = isSmallDevice ? '90% !important' : '66.6667% !important';
+  const cardHeight = isSmallDevice ? '100% !important' : '66.6667% !important';
 
 
   return (
