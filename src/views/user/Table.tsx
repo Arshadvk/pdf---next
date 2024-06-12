@@ -21,7 +21,7 @@ type Props = {
 
 
 
-const DashboardTable = ({ data }: Props) => {
+const DashboardTable = ({ data , type }: Props) => {
   const router = useRouter()
   const rows = data
 
@@ -48,7 +48,7 @@ const DashboardTable = ({ data }: Props) => {
                     {row.status}
                     </span>
                   </TableCell>
-                <TableCell className='cursor-pointer' onClick={() => router.push(`/user/requests/${row._id}`)}>
+                <TableCell className='cursor-pointer' onClick={() => type === "request" ?  router.push(`/user/requests/${row._id}`) :  router.push(`/user/${row._id}`)}>
                   Details
                 </TableCell>
               </TableRow>
