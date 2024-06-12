@@ -3,15 +3,21 @@ import connectMongoDB from "src/libs/database";
 import { userModel } from "src/models/user";
 
 async function handler(req: Request, res: Response) {
-
+    const { id } = req.query;
   try {
-    connectMongoDB()// Assuming connectMongoDB returns a Promise
-
-    console.log(req.query);
+     connectMongoDB(); // Ensure the database is connected
     
-    const Newuser = await userModel.find({})
-    console.log("new" + Newuser)
-    res.status(200).json(Newuser); // Respond with the saved user
+     
+     // Fetch the user by ID
+     const user = await userModel.findById(id);
+     console.log(user)
+     
+    if (!user) {
+      return res.status(404).json({ error: 'User not found' });
+    }
+
+    res.status(200).json(user);
+
     // disconnetMongoDB()
   } catch (error) {
     console.error("Error:", error);

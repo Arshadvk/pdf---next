@@ -19,7 +19,6 @@ const Dashboard = () => {
         <Grid item xs={12} md={12} lg={12}>
           <EmiratesList />
         </Grid>
-
       </Grid>
     </ApexChartWrapper>
   )
