@@ -40,7 +40,7 @@ async function loginHandler(req: Request, res: Response) {
 
     // Generate JWT token
     const token = jwt.sign(
-      { id: admin._id, email: admin.email },
+      { id: admin._id, email: admin.email , name : admin.name },
       JWT_SECRET,
       { expiresIn: "1h" } // Token expires in 1 hour
     );

@@ -10,6 +10,7 @@ import Greetings from 'src/views/dashboard/Greetings'
 import EmiratesList from 'src/views/dashboard/EmiratesList'
 
 const Dashboard = () => {
+  
   return (
     <ApexChartWrapper>
       <Grid container spacing={6}>
