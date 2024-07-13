@@ -18,6 +18,8 @@ async function handler(req: Request, res: Response) {
       }
     ]);
 
+    console.log(emirateCounts)
+    
     res.status(200).json(emirateCounts); // Respond with the counts
   } catch (error) {
     console.error("Error:", error);

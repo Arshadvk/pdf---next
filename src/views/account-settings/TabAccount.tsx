@@ -1,9 +1,10 @@
 // ** React Imports
-import { useState, ElementType, ChangeEvent } from 'react'
+import { useState, ElementType, ChangeEvent, useEffect } from 'react'
 
 // ** MUI Imports
 import Box from '@mui/material/Box'
 import Grid from '@mui/material/Grid'
+import jwt from "jsonwebtoken";
 
 import Select from '@mui/material/Select'
 import { styled } from '@mui/material/styles'
@@ -56,6 +57,21 @@ const TabAccount = () => {
     }
   }
 
+  
+  const [tokenData, setTokenData] = useState<any>(null);
+  useEffect(() => {
+    const token = localStorage.getItem("admin") ?? localStorage.getItem("super") ?? "null";
+
+    if (token && token !== "null") {
+      try {
+        const decodedToken = jwt.decode(token);
+        setTokenData(decodedToken);
+      } catch (error) {
+        console.error("Invalid token", error);
+      }
+    }
+  }, []);
+
   return (
     <CardContent>
       <form>
@@ -85,7 +101,7 @@ const TabAccount = () => {
           </Grid>
 
           <Grid item xs={12} sm={6}>
-            <TextField fullWidth label='Name' placeholder='Abdulkader' defaultValue='Abdulkader ' />
+            <TextField fullWidth label='Name' value={tokenData?.name} />
           </Grid>
           <Grid item xs={12} sm={6}>
             <TextField
@@ -93,6 +109,7 @@ const TabAccount = () => {
               type='email'
               label='Email'
               placeholder='abdulkader@gmail  .com'
+              value={tokenData?.email}
               defaultValue='abdulkader@gmail.com'
             />
           </Grid>
@@ -115,9 +132,7 @@ const TabAccount = () => {
               </Select>
             </FormControl>
           </Grid>
-          <Grid item xs={12} sm={6}>
-            <TextField fullWidth label='Company' placeholder='ABC Pvt. Ltd.' defaultValue='ABC Pvt. Ltd.' />
-          </Grid>
+
 
           {/* {openAlert ? (
             <Grid item xs={12} sx={{ mb: 3 }}>

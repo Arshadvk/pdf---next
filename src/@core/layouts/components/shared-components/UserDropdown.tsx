@@ -1,5 +1,5 @@
 // ** React Imports
-import { useState, SyntheticEvent, Fragment } from 'react'
+import { useState, SyntheticEvent, Fragment, useEffect } from 'react'
 
 // ** Next Import
 import { useRouter } from 'next/router'
@@ -13,6 +13,7 @@ import Divider from '@mui/material/Divider'
 import MenuItem from '@mui/material/MenuItem'
 import { styled } from '@mui/material/styles'
 import Typography from '@mui/material/Typography'
+import jwt from "jsonwebtoken";
 
 // ** Icons Imports
 
@@ -36,9 +37,24 @@ const UserDropdown = () => {
   // ** Hooks
   const router = useRouter()
 
+  const [tokenData, setTokenData] = useState<any>(null);
+  useEffect(() => {
+    const token = localStorage.getItem("admin") ?? localStorage.getItem("super") ?? "null";
+
+    if (token && token !== "null") {
+      try {
+        const decodedToken = jwt.decode(token);
+        setTokenData(decodedToken);
+      } catch (error) {
+        console.error("Invalid token", error);
+      }
+    }
+  }, []);
+
   const handleDropdownOpen = (event: SyntheticEvent) => {
     setAnchorEl(event.currentTarget)
   }
+
 
   const handleDropdownClose = (url?: string) => {
     if (url) {
@@ -85,7 +101,7 @@ const UserDropdown = () => {
               <Avatar alt='John Doe' src='/images/avatars/img1.jpg' sx={{ width: '2.5rem', height: '2.5rem' }} />
             </Badge>
             <Box sx={{ display: 'flex', marginLeft: 3, alignItems: 'flex-start', flexDirection: 'column' }}>
-              <Typography sx={{ fontWeight: 600 }}>Abdulkader</Typography>
+              <Typography sx={{ fontWeight: 600 }}>{tokenData?.name}</Typography>
               <Typography variant='body2' sx={{ fontSize: '0.8rem', color: 'text.disabled' }}>
                 Admin
               </Typography>
