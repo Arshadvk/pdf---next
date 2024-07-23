@@ -7,6 +7,7 @@ import TableBody from '@mui/material/TableBody'
 import TableCell from '@mui/material/TableCell'
 import TableContainer from '@mui/material/TableContainer'
 import { useRouter } from 'next/router'
+import { useState } from 'react'
 
 
 // ** Types Imports
@@ -21,10 +22,20 @@ type Props = {
 
 
 
-const DashboardTable = ({ data , type }: Props) => {
+const DashboardTable = ({ data, type }: Props) => {
   const router = useRouter()
   const rows = data
+  const [isEditing, setIsEditing] = useState(false);
 
+  const handleStatusClick = () => {
+    setIsEditing(!isEditing);
+  };
+
+  const handleStatusChange = (newStatus:string) => {
+    console.log(newStatus)
+    setIsEditing(false);
+  };
+  
   return (
     <Card>
       <TableContainer>
@@ -43,12 +54,32 @@ const DashboardTable = ({ data , type }: Props) => {
 
                 <TableCell>{row.name}</TableCell>
                 <TableCell>{row.email}</TableCell>
-                <TableCell >
-                  <span className={row.status == "pending" ? "bg-red-600 p-2 text-white rounded-full font-bold" : row.status == "verified" ? "bg-orange-600 p-2 text-white rounded-full font-bold" : "bg-green-600 p-2 text-white rounded-full font-bold"}>
+                <td>
+                  <span
+                    className={`${row.status === 'pending'
+                        ? 'bg-red-600'
+                        : row.status === 'verified'
+                          ? 'bg-orange-600'
+                          : 'bg-green-600'
+                      } p-2 text-white rounded-full font-bold cursor-pointer`}
+                    onClick={handleStatusClick}
+                  >
                     {row.status}
-                    </span>
-                  </TableCell>
-                <TableCell className='cursor-pointer' onClick={() => type === "request" ?  router.push(`/user/requests/${row._id}`) :  router.push(`/user/${row._id}`)}>
+                  </span>
+                  {isEditing && (
+                    <div className="absolute bg-white shadow-md rounded mt-2">
+                      <ul>
+                        <li
+                          className="p-2 cursor-pointer hover:bg-gray-200"
+                          onClick={() => handleStatusChange('approved')}
+                        >
+                         {row.status === "pending" ? "verified" : "approved"}
+                        </li>
+                      </ul>
+                    </div>
+                  )}
+                </td>
+                <TableCell className='cursor-pointer' onClick={() => type === "request" ? router.push(`/user/requests/${row._id}`) : router.push(`/user/${row._id}`)}>
                   Details
                 </TableCell>
               </TableRow>

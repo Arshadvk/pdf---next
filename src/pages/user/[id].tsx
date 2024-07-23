@@ -9,17 +9,17 @@ import Button from '@mui/material/Button'
 
 
 const ImgStyled = styled('img')(({ theme }) => ({
-    width: "2.5cm",
-    height: "2.6cm",
+    width: "2.7cm",
+    height: "2.7cm",
     marginTop: "23px",
-    marginLeft: "15px",
+    marginRight : "0.5cm" ,
 
     borderRadius: theme.shape.borderRadius
 }))
 
 const IdCard = styled('div')(() => ({
-    width: "9.3cm",
-    height: "5.7cm",
+    height:  "9.6cm",
+    width: "5.7cm",
 }))
 
 // ** Styled Component Import
@@ -72,13 +72,13 @@ const UserRequests = () => {
         <ApexChartWrapper>
             <Grid container spacing={6}>
                 <Grid item xs={12} md={12} lg={6} padding={10} >
-                    <div id='cardContainer'>
-                        <IdCard style={{ backgroundImage: "url('/images/cards/card.jpg')", backgroundSize: 'cover', backgroundPosition: 'center', backgroundColor: 'red', padding: "2px" }}>
+                    <div id='cardContainer' style={{height : "9.6cm" ,width: "5.7cm" }}>
+                        <IdCard style={{ backgroundImage: "url('/images/cards/card.png')", backgroundSize: 'cover', backgroundPosition: 'center', backgroundColor: 'red', paddingTop: "3cm" }}>
                             <Grid item xs={12} alignItems={'end'} justifyItems={'end'} textAlign={'center'} paddingRight={10}>
                                 <Grid className='flex items-end justify-end'>
                                     <ImgStyled className='' src={imgSrc} alt='Profile Pic' />
                                 </Grid>
-                                <Grid  marginLeft={55} marginTop={1}>
+                                <Grid  marginLeft={2} marginTop={1}>
                                     <Typography variant='h6' style={{ fontWeight: 'bold', color: "black", fontSize: '10px' }}>
                                         {data?.name}
                                     </Typography>
@@ -89,27 +89,18 @@ const UserRequests = () => {
                             </Grid>
 
                             <Grid container spacing={3}>
-                                <Grid item xs={6} paddingLeft={10} paddingTop={6}>
-                                    <Grid container direction="column" paddingLeft={10} paddingTop={4.5}>
-                                        <Typography fontSize={20} style={{ color: "white", fontSize: '8px' }}>
-                                            M.NO.AUH.701
-                                        </Typography>
-                                        <Typography fontSize={14} style={{ color: "white", fontSize: '8px' }}>
-                                            Issue. 30/04/2023
-                                        </Typography>
-                                        <Typography fontSize={14} style={{ color: "white", fontSize: '8px' }}>
-                                            Expiry 30/04/2025
-                                        </Typography>
-                                    </Grid>
+                                <Grid item xs={6} paddingLeft={10} >
+                                    
                                 </Grid>
                                 <Grid xs={6}>
                                     <Grid container direction="column" paddingLeft={8} paddingTop={9}>
-                                        <Typography fontSize={17} style={{ color: "white", fontSize: '8px' }}>
-                                            MANDALAM - GURUVAYOOR
+                                        <Typography fontSize={20} style={{ color: "black", fontSize: '8px' }}>AUH.701</Typography>
+                                        <Typography fontSize={17} style={{ color: "black", fontSize: '8px' }}>
+                                            GURUVAYOOR
                                         </Typography>
 
-                                        <Typography fontSize={17} style={{ color: "white", fontSize: '8px' }}>
-                                            DISTRICT - {data?.address?.district}
+                                        <Typography fontSize={17} style={{ color: "black", fontSize: '8px' }}>
+                                            {data?.address?.district}
                                         </Typography>
                                     </Grid>
                                 </Grid>
