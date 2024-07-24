@@ -8,18 +8,19 @@ import Button from '@mui/material/Button'
 // ** Custom Components Imports
 
 
-const ImgStyled = styled('img')(({ theme }) => ({
-    width: "2.7cm",
-    height: "2.7cm",
-    marginTop: "23px",
-    marginRight : "0.5cm" ,
-
-    borderRadius: theme.shape.borderRadius
-}))
+const ImgStyled = styled('img')(({  }) => ({
+    width: "3.1cm",
+    height: "3.1cm",
+    marginTop: "15px",
+    marginRight: "0.3cm",
+    border: "5px solid white",
+    borderRadius: "17px"
+  }));
+  
 
 const IdCard = styled('div')(() => ({
     height:  "9.6cm",
-    width: "5.7cm",
+    width: "5.8cm",
 }))
 
 // ** Styled Component Import
@@ -73,7 +74,9 @@ const UserRequests = () => {
             <Grid container spacing={6}>
                 <Grid item xs={12} md={12} lg={6} padding={10} >
                     <div id='cardContainer' style={{height : "9.6cm" ,width: "5.7cm" }}>
-                        <IdCard style={{ backgroundImage: "url('/images/cards/card.png')", backgroundSize: 'cover', backgroundPosition: 'center', backgroundColor: 'red', paddingTop: "3cm" }}>
+                        <IdCard style={{ backgroundImage: "url('/images/cards/card.png')", backgroundSize: 'cover', backgroundPosition: 'center', paddingTop: "3cm" }}>
+            
+
                             <Grid item xs={12} alignItems={'end'} justifyItems={'end'} textAlign={'center'} paddingRight={10}>
                                 <Grid className='flex items-end justify-end'>
                                     <ImgStyled className='' src={imgSrc} alt='Profile Pic' />

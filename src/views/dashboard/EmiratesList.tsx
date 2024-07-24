@@ -17,32 +17,6 @@ interface DataType {
   logoHeight: number
 }
 
-
-const withdrawData = [
-  {
-    logoWidth: 29,
-    logoHeight: 30,
-    amount: '145',
-    title: 'Ajman',
-    logo: '/images/logos/ajman.png'
-  },
-  {
-    logoWidth: 34,
-    logoHeight: 34,
-    amount: '1870',
-    title: 'Umm Al Quwain',
-    logo: '/images/logos/umm_al_quwain.svg',
-  },
-  {
-    logoWidth: 30,
-    logoHeight: 30,
-    amount: '50',
-    title: 'Ras Al Khaimah',
-    logo: '/images/logos/ras_al_khaimah.png'
-  },
-
-]
-
 // Styled Divider component
 const Divider = styled(MuiDivider)<DividerProps>(({ theme }) => ({
   margin: theme.spacing(5, 0),
@@ -55,49 +29,68 @@ const Divider = styled(MuiDivider)<DividerProps>(({ theme }) => ({
 }))
 
 const EmiratesList = () => {
-
-  const [data , setData] = useState<any>()
   const [emiratesData , setEmiratesData] = useState<any>([])
-  useEffect(()=>{
-    axios.get('/api/dashboard').then((res)=>{  
-        setData(res.data)
-        console.log(res.data)
-    }).catch((error)=>{
-        console.log(error)
-    })
-    const data1 = [
-      {
-        logoWidth: 28,
-        logoHeight: 29,
-        amount: data?.count,
-        title: 'Abu Dhabi',
-        logo: '/images/logos/abudhabi.png'
-      },
-      {
-        logoWidth: 38,
-        logoHeight: 38,
-        amount: data?.count,
-        title: 'Dubai',
-        logo: '/images/logos/dubai.png'
-      },
-      {
-        logoWidth: 20,
-        logoHeight: 28,
-        amount: data?.count ,
-        title: 'Sharjah',
-        logo: '/images/logos/sharjah.png'
-      },
-      
-      {
-        logoWidth: 30,
-        logoHeight: 30,
-        amount: data?.count ,
-        title: 'Fujairah',
-        logo: '/images/logos/fujairah.png'
-      },
-    ]
-    setEmiratesData(data1)
-  },[])
+  useEffect(() => {
+    axios.get('/api/dashboard')
+      .then((res) => {
+        const data1 = [
+          {
+            logoWidth: 28,
+            logoHeight: 29,
+            amount: res.data.find((item: { _id: string })=>  item._id === 'Abu Dhabi')?.count || 0,
+            title: 'Abu Dhabi',
+            logo: '/images/logos/abudhabi.png'
+          },
+          {
+            logoWidth: 38,
+            logoHeight: 38,
+            amount: res.data.find((item: { _id: string })=> item._id === 'Dubai')?.count || 0,
+            title: 'Dubai',
+            logo: '/images/logos/dubai.png'
+          },
+          {
+            logoWidth: 20,
+            logoHeight: 28,
+            amount: res.data.find((item: { _id: string })=> item._id === 'Sharjah')?.count || 0,
+            title: 'Sharjah',
+            logo: '/images/logos/sharjah.png'
+          },
+          {
+            logoWidth: 30,
+            logoHeight: 30,
+            amount: res.data.find((item: { _id: string })=>  item._id === 'Fujairah')?.count || 0,
+            title: 'Fujairah',
+            logo: '/images/logos/fujairah.png'
+          },
+          {
+            logoWidth: 29,
+            logoHeight: 30,
+            amount: res.data.find((item: { _id: string })=>  item._id === 'Ajman')?.count || 0,
+            title: 'Ajman',
+            logo: '/images/logos/ajman.png'
+          },
+          {
+            logoWidth: 34,
+            logoHeight: 34,
+            amount: res.data.find((item: { _id: string })=>  item._id === 'Umm Al Quwain')?.count || 0,
+            title: 'Umm Al Quwain',
+            logo: '/images/logos/umm_al_quwain.svg',
+          },
+          {
+            logoWidth: 30,
+            logoHeight: 30,
+            amount: res.data.find((item: { _id: string })=>  item._id === 'Ras Al Khaimah')?.count || 0,
+            title: 'Ras Al Khaimah',
+            logo: '/images/logos/ras_al_khaimah.png'
+          },
+        ];
+        setEmiratesData(data1);
+        console.log(res.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, []);
 
 
   return (
@@ -138,47 +131,14 @@ const EmiratesList = () => {
                     {item.amount}
                   </Typography>
                 </Box>
+                <Divider />
               </Box>
             )
           })}
         </CardContent>
       </Box>
 
-      <Divider flexItem className='hidden lg:block'/>
 
-      <Box sx={{ width: '100%' }}>
-        <CardContent sx={{ pb: theme => `${theme.spacing(5.5)} !important` }}>
-          {withdrawData.map((item: DataType, index: number) => {
-            return (
-              <Box
-                key={item.title}
-                sx={{ display: 'flex', alignItems: 'center', mb: index !== emiratesData.length - 1 ? 6 : 0 }}
-              >
-                <Box sx={{ minWidth: 36, display: 'flex', justifyContent: 'center' }}>
-                  <img src={item.logo} alt={item.title} width={item.logoWidth} height={item.logoHeight} />
-                </Box>
-                <Box
-                  sx={{
-                    ml: 4,
-                    width: '100%',
-                    display: 'flex',
-                    flexWrap: 'wrap',
-                    alignItems: 'center',
-                    justifyContent: 'space-between'
-                  }}
-                >
-                  <Box sx={{ marginRight: 2, display: 'flex', flexDirection: 'column' }}>
-                    <Typography sx={{ fontWeight: 600, fontSize: '0.875rem' }}>{item.title}</Typography>
-                  </Box>
-                  <Typography variant='subtitle2' sx={{ fontWeight: 600, color: 'success.main' }}>
-                    {item.amount}
-                  </Typography>
-                </Box>
-              </Box>
-            )
-          })}
-        </CardContent>
-      </Box>
     </Card>
   )
 }
