@@ -19,10 +19,10 @@ const HomePage = () => {
         }}
       >
           <div className='flex items-center justify-center'>
-              {/* <h4 className='text-5xl font-extrabold text-black' style={{textTransform:"uppercase" , fontFamily:"Chilanka"}}>
+              <h4 className='text-5xl font-extrabold text-white' style={{textTransform:"uppercase" , fontFamily:"Chilanka"}}>
              " അവർണ്ണന് അധികാരം <br /> 
                പീഡിതന് മോചനം "
-              </h4> */}
+              </h4>
           </div>
           <div className='flex items-end justify-end'>
           <img src="/images/home/home.png" className='h-80 mt-20' alt="" />
