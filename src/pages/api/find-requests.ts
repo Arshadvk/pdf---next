@@ -8,8 +8,8 @@ async function handler(req: Request, res: Response) {
     connectMongoDB()// Assuming connectMongoDB returns a Promise
 
 
-    const Newuser = await userModel.find({status: "pending"})
-    console.log("new" + Newuser)
+    const Newuser = await userModel.find({status: "verified"})
+    
     res.status(200).json(Newuser); // Respond with the saved user
     // disconnetMongoDB()
   } catch (error) {

@@ -5,18 +5,20 @@ import { userModel } from "src/models/user";
 async function handler(req: Request, res: Response) {
 
   try {
-    connectMongoDB()// Assuming connectMongoDB returns a Promise
+   
+    connectMongoDB(); // Assuming connectMongoDB returns a Promise
+    console.log(req.body)
 
-
-    const Newuser = await userModel.find({status: "approved"})
-    console.log("new" + Newuser)
-    res.status(200).json(Newuser); // Respond with the saved user
-    // disconnetMongoDB()
+    const { id, status } = req.body;
+    console.log(status)
+    const updatedUser = await userModel.findOneAndUpdate({ _id: id }, { status: status });
+    
+    console.log(updatedUser)
+    res.status(200).json({id}); // Respond with the saved user
   } catch (error) {
     console.error("Error:", error);
     res.status(500).json({ error: "Internal Server Error" });
-  } finally {
-  }
+  } 
 }
 
 export default handler;

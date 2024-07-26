@@ -7,6 +7,8 @@ import TableCell from '@mui/material/TableCell'
 import TableContainer from '@mui/material/TableContainer'
 import { useRouter } from 'next/router'
 import { useState } from 'react'
+import axios from 'axios'
+import Swal from 'sweetalert2';
 
 // ** Types Imports
 type Props = {
@@ -16,7 +18,7 @@ type Props = {
 
 const DashboardTable = ({ data, type }: Props) => {
   const router = useRouter()
-  const rows = data
+  const rows:[] = data
   const [editingRow, setEditingRow] = useState<string | null>(null);
 
   const handleStatusClick = (rowId: string) => {
@@ -25,10 +27,36 @@ const DashboardTable = ({ data, type }: Props) => {
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const handleStatusChange = (newStatus: string, _id: any) => {
-    console.log(newStatus)
+    const data = {
+      id: _id,
+      status: newStatus
+    }
+    
+
+    axios.post("/api/post/status-change", data, {
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    }).then(() => {
+      Swal.fire({
+        title: 'Success',
+        text: 'Status updated successfully!',
+        icon: 'success',
+        confirmButtonText: 'OK'
+      });
+   
+    }).catch((error) => {
+      Swal.fire({
+        title: 'Error',
+        text: 'There was an error updating the status.',
+        icon: 'error',
+        confirmButtonText: 'OK'
+      });
+      console.error(error);
+    });
     setEditingRow(null);
   };
-  
+
   return (
     <Card>
       <TableContainer>
@@ -63,9 +91,9 @@ const DashboardTable = ({ data, type }: Props) => {
                       <ul>
                         <li
                           className="p-2 cursor-pointer hover:bg-gray-200"
-                          onClick={() => handleStatusChange('approved', row._id)}
+                          onClick={() => handleStatusChange(row.status === "pending" ? "verified" : row.status === "verified" ? "approved" : "remove", row._id)}
                         >
-                          {row.status === "pending" ? "verified" : row.status === "verified"  ?  "approved" : ""}
+                          {row.status === "pending" ? "verified" : row.status === "verified" ? "approved" : "remove"}
                         </li>
                       </ul>
                     </div>

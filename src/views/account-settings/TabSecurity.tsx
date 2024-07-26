@@ -15,6 +15,7 @@ import InputAdornment from '@mui/material/InputAdornment'
 // ** Icons Imports
 import EyeOutline from 'mdi-material-ui/EyeOutline'
 import EyeOffOutline from 'mdi-material-ui/EyeOffOutline'
+import axios from 'axios'
 
 
 interface State {
@@ -70,6 +71,12 @@ const TabSecurity = () => {
     event.preventDefault()
   }
 
+  const handleChangePassword = (e : any)=> {
+     e.preventDefault()
+     if(values.newPassword === values.confirmNewPassword && values.confirmNewPassword == "")
+     axios.put("/changepassword" , {values , })
+  }
+  
   return (
     <form>
       <CardContent sx={{ paddingBottom: 0 }}>
@@ -168,7 +175,7 @@ const TabSecurity = () => {
       <CardContent>
 
         <Box sx={{ mt: 11 }}>
-          <Button variant='contained' sx={{ marginRight: 3.5 }}>
+          <Button variant='contained' onClick={(e: any)=> handleChangePassword(e)} sx={{ marginRight: 3.5 }}>
             Save Changes
           </Button>
           <Button

@@ -19,8 +19,11 @@ const UserRequests = () => {
 
   const [data , setData] = useState()
 
+
   useEffect(() => {
-    axios.get('/api/find-requests')
+    const token = localStorage.getItem("admin") ?? localStorage.getItem("super") ?? "null";
+    if (token && token !== "null" && localStorage.getItem("admin") ) {
+    axios.get(`/api/find-requests/${token}`)
       .then((res) => {
         setData(res.data)
         console.log(res.data)
@@ -28,6 +31,16 @@ const UserRequests = () => {
       .catch((error) => {
         console.error('Error:', error);
       });
+    }else if (token && token !== "null" && localStorage.getItem("super") ) {
+      axios.get(`/api/find-requests`)
+      .then((res) => {
+        setData(res.data)
+        console.log(res.data)
+      })
+      .catch((error) => {
+        console.error('Error:', error);
+      });
+    }
   }, [])
 
   return (
