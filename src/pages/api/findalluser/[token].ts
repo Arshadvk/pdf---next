@@ -10,7 +10,9 @@ async function handler(req: Request, res: Response) {
     
      const decodedToken :any = jwt.decode(token);
      console.log(decodedToken?.emirates)
+     
      // Fetch the user by ID
+
      const user = await userModel.find({
         emirates: decodedToken?.emirates,
         status: "approved"
