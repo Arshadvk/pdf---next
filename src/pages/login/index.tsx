@@ -22,7 +22,6 @@ import InputAdornment from '@mui/material/InputAdornment'
 import MuiFormControlLabel, { FormControlLabelProps } from '@mui/material/FormControlLabel'
 
 // ** Icons Imports
-
 import EyeOutline from 'mdi-material-ui/EyeOutline'
 import EyeOffOutline from 'mdi-material-ui/EyeOffOutline'
 
@@ -114,11 +113,7 @@ const LoginPage = () => {
             text: 'Something went wrong!',
           });
       });
-
     }
-
-
-
   }
 
   useEffect(() => {
